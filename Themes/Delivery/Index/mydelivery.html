@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>配送端</title>
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link href="demo.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+<script src="/layuiadmin/layui/layui.js"></script>
+</head>
+<body>
+    <div class="layui-container">
+      <div class="layui-row">
+        <div class="layui-col-md9">
+          <h1>配送系统</h1>
+        </div>   
+      </div>
+      <table class="layui-table">
+        <colgroup>
+          <col width="150">
+          <col width="200">
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>团长</th>
+            <th>时间</th>
+            <th>状态</th>
+          </tr> 
+        </thead>
+        <tbody>
+        <foreach name='list' item='item'>
+          <tr>
+            <td><a href="{:U('Index/mydeliveryitem',array('id'=>$item['id']))}">{$item.head_name}</a></td>
+            <td><a href="{:U('Index/mydeliveryitem',array('id'=>$item['id']))}">{$item.create_time}</a></td>
+            <td><a href="{:U('Index/mydeliveryitem',array('id'=>$item['id']))}"><if condition="$item['state'] eq 0">未配送<elseif condition="$item['state'] eq 1"/>配送中<elseif condition="$item['state'] eq 2" />已配送</if></a></td>
+          </tr>
+        </foreach>
+        {$pager}
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>
+
