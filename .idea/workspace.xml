@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1cdf2692-57bc-4231-aa8d-5e2d3fa1f410" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seller.php" beforeDir="false" afterPath="$PROJECT_DIR$/seller.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,29 +18,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IndexController.class.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/IndexController.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="OrderController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/OrderController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2639">
+            <state relative-caret-position="15892">
               <caret line="559" column="47" selection-start-line="559" selection-start-column="47" selection-end-line="559" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/UserController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5777">
-              <caret line="3158" column="14" lean-forward="true" selection-start-line="3158" selection-start-column="14" selection-end-line="3158" selection-end-column="14" />
+            <state relative-caret-position="91263">
+              <caret line="3158" column="14" selection-start-line="3158" selection-start-column="14" selection-end-line="3158" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -43,17 +39,35 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="30" />
+            <state relative-caret-position="986">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CarController.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CarController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138852">
-              <caret line="4799" column="32" selection-start-line="4799" selection-start-column="32" selection-end-line="4799" selection-end-column="32" />
+            <state relative-caret-position="183">
+              <caret line="1852" column="23" lean-forward="true" selection-start-line="1852" selection-start-column="23" selection-end-line="1852" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="seller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/seller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CarModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="694" column="68" selection-start-line="694" selection-start-column="41" selection-end-line="694" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -61,8 +75,8 @@
       <file leaf-file-name="WeprogramController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="318" selection-start-line="318" selection-end-line="319" />
+            <state relative-caret-position="450">
+              <caret line="406" column="52" selection-start-line="406" selection-start-column="47" selection-end-line="406" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -70,7 +84,7 @@
       <file leaf-file-name="subscribetemplateconfig.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Themes/Seller/Weprogram/subscribetemplateconfig.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="841">
+            <state relative-caret-position="2581">
               <caret line="89" column="123" selection-start-line="89" selection-start-column="123" selection-end-line="89" selection-end-column="123" />
             </state>
           </provider>
@@ -88,17 +102,8 @@
       <file leaf-file-name="ConfigModel.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Seller/Model/ConfigModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="876">
+            <state relative-caret-position="1479">
               <caret line="62" column="30" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Common/Common/function.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18821">
-              <caret line="649" column="9" selection-start-line="649" selection-start-column="9" selection-end-line="649" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -125,6 +130,12 @@
       <find>templateconfig_fenxi</find>
       <find>getAccessToken</find>
       <find>subscribetemplateconfig</find>
+      <find>todo</find>
+      <find>订阅</find>
+      <find>head_id</find>
+      <find>json['code'] =</find>
+      <find>5</find>
+      <find>4</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -147,11 +158,14 @@
         <option value="$PROJECT_DIR$/Themes/Seller/Goods/config.html" />
         <option value="$PROJECT_DIR$/Modules/Home/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/Modules/Home/Controller/CommonController.class.php" />
-        <option value="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" />
         <option value="$PROJECT_DIR$/Modules/Lib/Weixin/Jssdk.class.php" />
-        <option value="$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php" />
         <option value="$PROJECT_DIR$/Themes/Seller/Weprogram/subscribetemplateconfig.html" />
         <option value="$PROJECT_DIR$/Modules/Home/Controller/UserController.class.php" />
+        <option value="$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php" />
+        <option value="$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php" />
+        <option value="$PROJECT_DIR$/seller.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" />
       </list>
     </option>
   </component>
@@ -197,7 +211,7 @@
               <item name="sqpt.wfjds.com" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Modules" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Home" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -206,7 +220,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="car&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CarController.class.php&#10;orderC&#9;null&#9;null&#10;order&#9;null&#9;null&#10;goods/con&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Themes/Seller/Goods/config.html" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/index.php&#10;seller.php&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/seller.php&#10;car&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CarController.class.php&#10;orderC&#9;null&#9;null&#10;order&#9;null&#9;null&#10;goods/con&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Themes/Seller/Goods/config.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -241,18 +255,19 @@
       <workItem from="1582633970137" duration="5570000" />
       <workItem from="1582810639376" duration="5045000" />
       <workItem from="1582895100400" duration="6716000" />
-      <workItem from="1583047541470" duration="5709000" />
+      <workItem from="1583047541470" duration="6373000" />
+      <workItem from="1583330188442" duration="1687000" />
+      <workItem from="1583414293197" duration="2274000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28287000" />
+    <option name="totallyTimeSpent" value="32912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -261,7 +276,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32978722" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32978722" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -280,20 +295,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/OrderController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16211">
-          <caret line="559" column="47" selection-start-line="559" selection-start-column="47" selection-end-line="559" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139171">
@@ -579,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138852">
-          <caret line="4799" column="32" selection-start-line="4799" selection-start-column="32" selection-end-line="4799" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Lib/Weixin/Jssdk.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -593,45 +587,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Themes/Seller/Weprogram/subscribetemplateconfig.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="89" column="123" selection-start-line="89" selection-start-column="123" selection-end-line="89" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Seller/Model/ConfigModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="876">
+        <state relative-caret-position="1479">
           <caret line="62" column="30" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/OrderController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2639">
+        <state relative-caret-position="15892">
           <caret line="559" column="47" selection-start-line="559" selection-start-column="47" selection-end-line="559" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="318" selection-start-line="318" selection-end-line="319" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/UserController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5777">
-          <caret line="3158" column="14" lean-forward="true" selection-start-line="3158" selection-start-column="14" selection-end-line="3158" selection-end-column="14" />
+        <state relative-caret-position="91263">
+          <caret line="3158" column="14" selection-start-line="3158" selection-start-column="14" selection-end-line="3158" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Themes/Seller/Weprogram/subscribetemplateconfig.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2581">
+          <caret line="89" column="123" selection-start-line="89" selection-start-column="123" selection-end-line="89" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="694" column="68" selection-start-line="694" selection-start-column="41" selection-end-line="694" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/WeprogramController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="406" column="52" selection-start-line="406" selection-start-column="47" selection-end-line="406" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="1852" column="23" lean-forward="true" selection-start-line="1852" selection-start-column="23" selection-end-line="1852" selection-end-column="23" />
         </state>
       </provider>
     </entry>

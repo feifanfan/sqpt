@@ -1835,7 +1835,8 @@ class CarController extends CommonController {
 		}
 
 			
-	
+	    // edit by ff
+        $member_id = 14;
 	  if( empty($member_id) )
 	  {
 		  //需要登录
@@ -1846,7 +1847,10 @@ class CarController extends CommonController {
 	$cart = D('Home/Car');
 	
 	
-	
+	//edit by ff
+    $buy_type = '';
+    $token = '';
+    $community_id = '';
 	if ((!$cart->has_goodswecar($buy_type,$token,$community_id) ) ) {
 		//购物车中没有商品
 		echo json_encode( array('code' =>4) );
@@ -2803,8 +2807,17 @@ class CarController extends CommonController {
 	//  weprogram_use_templatetype
 	$weprogram_use_templatetype = D('Home/Front')->get_config_by_name('weprogram_use_templatetype');
 
-	//TODO 模板消息 add to here
-
+	//TODO 模板消息 add to here 1.成功通知
+    $toustid = '';//团长toustid
+    $tmpid = D('Home/Front')->get_config_by_name('weprogram_subtemplate_pay_order');//
+    $tmpInfo['data'] = [
+        ['name4']['value'] => '',
+        ['date3']['value'] => '2020-02-28 10:00:00',
+        ['amount2']['value'] => '100.01',
+        ['character_string1']['value'] => '123456789666',
+        ['thing5']['value'] => '备注信息',
+    ];
+    D('Home/Car')->sendSubscribeMessage($toustid,$tmpid,$tmpInfo);//$toustid,$tmpid：weprogram_subtemplate_pay_order,array $info
 
 	$is_need_subscript = 0;
 	$need_subscript_template = array();

@@ -374,7 +374,7 @@ class WeprogramController extends CommonController{
 		$this->display();
 	}
 
-    public function sendSubscribeMessage(){
+    public function sendSubscribeMessage($toustid,$tmpid,array $info){
         $appid_info 	=  M('lionfish_comshop_config')->where( array('name' => 'wepro_appid') )->find();
         $appsecret_info =  M('lionfish_comshop_config')->where( array('name' => 'wepro_appsecret') )->find();
         $mchid_info =  M('config')->where( array('name' => 'MCHID') )->find();
@@ -383,19 +383,19 @@ class WeprogramController extends CommonController{
         $weixin_config['appid'] = $appid_info['value'];
         $weixin_config['appscert'] = $appsecret_info['value'];
         $weixin_config['mchid'] = $mchid_info['value'];
-        var_dump('<pre>');
-        var_dump($weixin_config);
+//        var_dump('<pre>');
+//        var_dump($weixin_config);
         $jssdk = new \Lib\Weixin\Jssdk( $weixin_config['appid'], $weixin_config['appscert']);
         $re_access_token = $jssdk->getAccessToken();
-        var_dump($weixin_config);
-        var_dump('<br>');
-        var_dump($re_access_token);
-        var_dump('<br>');
+//        var_dump($weixin_config);
+//        var_dump('<br>');
+//        var_dump($re_access_token);
+//        var_dump('<br>');
         $url = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token='.$re_access_token;
 //         $data = "{'touser': 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q', 'template_id': 'CBHk9t7BP7JsC5R-Xagu406PpujhwrtsnJ2nTbBgvXU','page': 'index','data': {'character_string1': {'DATA': '1234567888'},'date3': {'DATA': '2020-02-28 10:00:00'},'name4': {'DATA':'测试商品'
 // },'amount2': {'DATA': '100'}, 'thing5': {'DATA': '备注内容' },}}";
-        $data['touser'] ='o5DQ_5X-jEk69jJS4uULGEW3eN8Q';//接受者openid
-        $data['template_id'] = 'CBHk9t7BP7JsC5R-Xagu49yXyqoH2IRfjjezuLd_yLE';
+        $data['touser'] =$toustid;//接受者openid
+        $data['template_id'] = $tmpid;
         $data_temp['name4']['value'] = '测试商品';
         $data_temp['date3']['value'] = '2020-02-28 10:00:00';
         $data_temp['amount2']['value'] = '100.01';
@@ -405,7 +405,7 @@ class WeprogramController extends CommonController{
 
 
         $ret = sendhttps_post($url,json_encode($data));
-        var_dump($ret);
+        return true;
     }
 	
 	
