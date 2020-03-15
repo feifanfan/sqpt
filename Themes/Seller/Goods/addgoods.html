@@ -309,6 +309,14 @@
 								</div>
 								<?php } ?>
 								<div class="layui-form-item" >
+									<label class="layui-form-label">半小时达</label>
+									<div class="col-sm-10 col-xs-12" >
+										<input type="checkbox"  lay-skin="primary"  name="is_timingup" <?php if(isset($item['is_timingup']) && $item['is_timingup'] ==1 ){ ?> checked <?php } ?> value="1" />
+										<div style="clear:both;"></div>
+										<span class="layui-form-mid layui-word-aux"></span>
+									</div>
+								</div>
+								<div class="layui-form-item" >
 									<label class="layui-form-label">提货时间</label>
 									<div class="col-sm-10 col-xs-12" id="radPickupDateTip"> 
 										<?php $item['pick_up_type'] = isset($item['pick_up_type']) ? $item['pick_up_type'] : 1; ?>

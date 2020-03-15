@@ -63,7 +63,7 @@ class PayNotifyCallBack extends WxPayNotify
 		$handl = fopen($file,'a');
 		fwrite($handl,"Queryorder");
 		fwrite($handl,"call back:" . json_encode($data));
-     	 fwrite($handl,"小程序开始查询支付：");
+		fwrite($handl,"小程序开始查询支付：");
 		fclose($handl);
 		
 		

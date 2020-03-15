@@ -144,10 +144,6 @@ class WeixinnotifyModel {
 			//发送小程序模板消息 : 订单  订单时间 商品名称  支付金额 温馨提示
 			if( $order_info['from_type'] == 'wepro' )
 			{
-				
-				
-				
-				
 				$template_data = array();
 				$template_data['keyword1'] = array('value' => $order_info['order_num_alias'], 'color' => '#030303');
 				$template_data['keyword2'] = array('value' => date('Y-m-d H:i:s',$order_info['pay_time']), 'color' => '#030303');
@@ -197,8 +193,7 @@ class WeixinnotifyModel {
 				if( !empty($weprogram_use_templatetype) && $weprogram_use_templatetype == 1 )
 				{
 					$mb_subscribe = M('lionfish_comshop_subscribe')->where( array('member_id' => $order['member_id'] , 'type' => 'pay_order') )->find();
-					
-					//...todo
+					//...todo wait edit by ff
 					if( !empty($mb_subscribe) )
 					{
 						$template_id = D('Home/Front')->get_config_by_name('weprogram_subtemplate_pay_order');
