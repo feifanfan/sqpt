@@ -64,7 +64,7 @@ class GoodsModel extends Model{
 	{
 		$post_data = array();
 		$post_data_goods = array();
-		
+		var_dump(I('post.'));die;
 		$post_data_goods['goodsname'] = I('post.goodsname','','trim');
 		$post_data_goods['subtitle'] = I('post.subtitle','','trim');
 		$post_data_goods['grounding'] = I('post.grounding');
@@ -96,7 +96,7 @@ class GoodsModel extends Model{
 		$post_data_goods['is_seckill'] =  I('post.is_seckill','0','intval');
 			
 		$post_data_goods['is_take_vipcard'] =  I('post.is_take_vipcard','0','intval');
-		
+		$post_data_goods['is_timingup'] = I('post.is_timingup','0','intval');
 		
 		$post_data_goods['addtime'] = time();
 		
@@ -1021,9 +1021,10 @@ class GoodsModel extends Model{
 		$post_data_goods['is_all_sale'] =  I('post.is_all_sale',0,'intval');
 		
 		$post_data_goods['is_seckill'] =  I('post.is_seckill',0,'intval');
-		
-		$post_data_goods['is_take_vipcard'] =  I('post.is_take_vipcard',0,'intval');
-		
+
+        $post_data_goods['is_take_vipcard'] =  I('post.is_take_vipcard',0,'intval');
+        $post_data_goods['is_timingup'] =  I('post.is_timingup',0,'intval');
+
 		
 		if (defined('ROLE') && ROLE == 'agenter' ) {
 			$supply_edit_goods_shenhe = D('Home/Front')->get_config_by_name('supply_edit_goods_shenhe');
