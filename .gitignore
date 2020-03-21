@@ -1,3 +1,4 @@
 /Uploads/
-/
-Runtime/
+/Runtime/
+/Modules/Seller/Conf/db.php
+/Modules/Common/Conf/db.php
