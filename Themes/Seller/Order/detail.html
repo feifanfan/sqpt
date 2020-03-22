@@ -287,6 +287,10 @@
 							<?php if( $item['order_status_id'] == 6){ ?>
 							<span class="text-warning font18">已签收</span>
 							<?php } ?>
+							
+							<?php if( $item['order_status_id'] == 7){ ?>
+							<span class="text-warning font18">已退款</span>
+							<?php } ?>
 							<?php if( $item['order_status_id'] == 14){ ?>
 							<span class="text-warning font18">配送中</span>
 							<?php } ?>
@@ -480,9 +484,9 @@
 						<th style="padding-left: 20px">规格、编号</th>
 						<th style="text-align: left;padding-left: 20px">基数</th>
 						<?php if(  $item['type'] != 'integral' ){ ?>
-						<th style="padding-left: 20px;width: 320px;">团长佣金</th>
+						<th style="padding-left: 20px;width: 320px;">团长佣金&nbsp;<a href="javascript:;" class="tip_headcommiss"><i class="layui-icon layui-icon-tips"></i></a></th>
 						<?php } ?>
-						
+						<th>是否退款</th>
 						<th style="text-align: center;">供应商</th>
 						<th style="text-align: center;width: 130px">单价</th>
 						<th style="text-align: center;width: 100px;">数量</th>
@@ -558,7 +562,31 @@
 							<?php } ?>
 							
 							<td style="text-align: center;">
-							<span>{$goods['supply_name']}({$goods['supply_type']})</span>
+								
+								<?php if($item['order_status_id'] == 7){ ?>
+									已退款
+								<?php }else if($goods['is_refund_state'] == 1 && !empty($goods['refund_info']) ){ ?>		
+									退款金额：<?php echo $goods['refund_info']['ref_money']; ?> 元,
+									<?php if($goods['refund_info']['state'] == 0 ){ ?>
+										<span class="layui-badge">申请中</span>
+									<?php }else if($goods['refund_info']['state'] == 3){ ?>
+										<span class="label label-success">退款成功</span>
+									<?php }else if($goods['refund_info']['state'] == 4){ ?>
+										<span class="label label-default">退款失败</span>
+									<?php  } ?>
+									<br/><br/>
+									<a class="btn btn-primary btn-xs " lay-href="{:U('order/oprefund', array('id' => $item['order_id'], 'ref_id' => $goods['refund_info']['ref_id'] ))}" target="_blank">退款详情</a>
+									
+								<?php  }else if($goods['is_refund_state'] == 0 && in_array( $item['order_status_id'], array(1,4,6,10,11,12,14)) && $is_can_nowrfund_order   ){ ?>
+									<a class='btn op btn-primary btn-xs' style="display:none;" data-toggle="ajaxModal" href="javascript:;" data-href="{:U('order/oprefund_goods_do', array('id' => $item['order_id'], 'order_goods_id' => $goods['order_goods_id'] ))}" >
+										<i class="icow icow-yibiaoji" style="color: #999;display: inline-block;vertical-align: middle" title="后台商品退款" ></i>
+										后台商品退款
+									</a>
+								<?php } ?>
+							</td>
+							
+							<td style="text-align: center;">
+								<span>{$goods['supply_name']}({$goods['supply_type']})</span>
 							</td>
 							
 							
@@ -728,6 +756,16 @@ layui.use(['jquery', 'layer','form'], function(){
   var form = layui.form;
   
   
+	
+	$('.tip_headcommiss').click(function(){
+		var s_str = '团长佣金结算状态： 待结算<br/>团长佣金结算金额：2.40<br/>佣金预计结算时间：2016-09-14 16:04:05  <br>结算说明：结算前商品退款会改变佣金计算情况，佣金结算后商品进行退款不改变佣金计算情况。';
+		
+		layer.tips( s_str ,this, {
+			tips:[1,'#000'],
+			time: 10000 
+		});
+	})	
+	
 	$('.deldom').click(function(){
 		var s_url = $(this).attr('data-href');
 		layer.confirm($(this).attr('data-confirm'), function(index){

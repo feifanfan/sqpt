@@ -179,7 +179,7 @@ class GoodsController extends CommonController{
 		    switch( $searchtime )
 		    {
 		        case 'create':
-		            $condition .= ' AND (gm.begin_time >='.$starttime.' and gm.end_time < '.$endtime.' )';
+		            $condition .= ' AND (gm.begin_time >='.$starttime.' and gm.end_time <= '.$endtime.' )';
 					
 					if (!defined('ROLE') && ROLE != 'agenter' )
 					{
@@ -921,7 +921,7 @@ class GoodsController extends CommonController{
 		$item['community_head_commission'] = $communityhead_commission;
 		
 		$item['end_time'] = time() + 86400;
-		$item['is_timingup'] = false;
+		
 		
 		
 		
@@ -987,7 +987,6 @@ class GoodsController extends CommonController{
 		$is_vir_count = true;
 		$is_newbuy = true;
 		$is_goodsspike = true;
-
 		
 		$supply_can_goods_sendscore = true;
 
@@ -1034,7 +1033,7 @@ class GoodsController extends CommonController{
 		$this->is_newbuy = $is_newbuy;
 		$this->is_goodsspike = $is_goodsspike;
 		$this->is_open_vipcard_buy = $is_open_vipcard_buy;
-
+		
 		$seckill_is_open = $config_data['seckill_is_open'];
 		$this->seckill_is_open = $seckill_is_open;
 		
@@ -1048,6 +1047,7 @@ class GoodsController extends CommonController{
 		
 		//$is_default_vipmember_buy = isset($config_data['is_default_vipmember_buy']) && $config_data['is_default_vipmember_buy'] == 1 ? 1 : 0;
 		//$this->is_default_vipmember_buy = $is_default_vipmember_buy;
+		
 		
 		$this->display();
 	}

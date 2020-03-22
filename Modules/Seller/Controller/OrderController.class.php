@@ -366,8 +366,139 @@ class OrderController extends CommonController{
 	{
 		$_GPC = I('request.');
 		
+		$opdata = $this->check_order_data();		
+		extract($opdata);
 		
-		include $this->display();
+		$weixin_model = D('Home/Weixin');
+		
+		$id = $_GPC['id'];
+		
+		$order_goods_id = $_GPC['order_goods_id'];
+		/**
+			id	: 	3864
+			order_goods_id	: 4442
+		**/
+		//付款总额
+		
+		$order_goods_info = M('lionfish_comshop_order_goods')->where( array('order_goods_id' => $order_goods_id ) )->find();
+		
+		$this->order_goods_info = $order_goods_info;
+		
+		$goods_images = tomedia( $order_goods_info['goods_images'] );
+		
+		$this->goods_images = $goods_images;
+		
+		$free_tongji = $order_goods_info['total']-$order_goods_info['voucher_credit']-$order_goods_info['fullreduction_money'] - $order_goods_info['score_for_money'] - $order_goods_info['has_refund_money'];
+		
+		$total_quantity = D('Seller/Commonorder')->get_order_goods_quantity($id,$order_goods_id);
+		
+		$this->total_quantity = $total_quantity;
+		
+		$has_refund_quantity = D('Seller/Commonorder')->refund_order_goods_quantity($id,$order_goods_id);
+		
+		$this->has_refund_quantity = $has_refund_quantity;
+		
+		$has_refund_money = D('Seller/Commonorder')->get_order_goods_refund_money($id,$order_goods_id); 
+		
+		$this->has_refund_money = $has_refund_money;
+		
+		$shipping_fare = $order_goods_info['shipping_fare'];
+		
+		$delivery = $opdata['item']['delivery'];
+		
+		$is_has_refund_deliveryfree = D('Home/Front')->get_config_by_name('is_has_refund_deliveryfree');
+		
+		$is_has_refund_deliveryfree = !isset($is_has_refund_deliveryfree) || $is_has_refund_deliveryfree == 1 ? 1:0;
+		
+		if( $is_has_refund_deliveryfree == 1)
+		{
+			//后台设置退运费了
+			$free_tongji += $shipping_fare;
+		}
+		
+		$this->is_has_refund_deliveryfree = $is_has_refund_deliveryfree;
+		$this->free_tongji = $free_tongji;
+		$this->_GPC = $_GPC;
+		
+		$commiss_state = '未结算';
+		
+		$commiss_info = M('lionfish_community_head_commiss_order')->where( array('order_id' => $id, 'order_goods_id' =>$order_goods_id,'type' => 'orderbuy' ) )->find();
+		
+		if( !empty($commiss_info) && $commiss_info['state'] == 1 )
+		{
+			$commiss_state = '已结算';
+		}
+		
+		$this->commiss_info  =$commiss_info;
+		$this->commiss_state = $commiss_state;
+		
+		if ( IS_POST ) {
+			
+			$refund_money = isset($_GPC['refund_money']) && $_GPC['refund_money'] >0  ? floatval($_GPC['refund_money']) : 0;
+			
+			$is_refund_shippingfare = isset($_GPC['is_refund_shippingfare']) ? $_GPC['is_refund_shippingfare'] : 0;//退运费
+			$is_back_sellcount = isset($_GPC['is_back_sellcount']) ? $_GPC['is_back_sellcount'] : 0;//退库存
+			
+			$free_tongji = $opdata['item']['total']-$opdata['item']['voucher_credit']-$opdata['item']['fullreduction_money'] - $opdata['item']['score_for_money'];
+			
+			$refund_quantity =  isset($_GPC['refund_quantity']) && $_GPC['refund_quantity'] >0  ? floatval($_GPC['refund_quantity']) : 0; 
+			
+			if( $is_refund_shippingfare == 1)
+			{
+				$free_tongji += $shipping_fare;
+			}
+			
+			if($refund_money > $free_tongji){
+					show_json(0, array('message' => '填写金额大于总退款金额') );
+			}
+			else if( $refund_money <= 0 )
+			{
+				show_json(0, array('message' => '填写正确的退款金额') );
+			}
+			else if( $is_back_sellcount == 1 && $refund_quantity > $total_quantity )
+			{
+				show_json(0, array('message' => '填写正确的退库存数量，最大'.$total_quantity.'个' ) );
+			}
+			else{
+				//is_back_sellcount 
+				$res = $weixin_model->refundOrder($id,$refund_money,0,$order_goods_id,$is_back_sellcount, $refund_quantity,1);
+				
+				if( $res['code'] == 0 )
+				{
+					show_json(0, array('message' => $res['msg'] ) );
+				}else{
+					
+					//开始插入本次退款的情况
+					//存储当前这笔退款 影响到的以后佣金情况
+					$order_goods_refundid =  D('Seller/Commonorder')->ins_order_goods_refund($id, $order_goods_id,$total_quantity, $refund_quantity,$refund_money,$is_back_sellcount);
+					
+					//如果这个商品没有数量了。就改变他的状态为已退款的状态
+					$new_total_quantity = D('Seller/Commonorder')->get_order_goods_quantity($id,$order_goods_id);
+					if( $new_total_quantity <=0 )
+					{
+						D('Seller/Commonorder')->check_refund_order_goods_status($id, $order_goods_id, $refund_money,$is_back_sellcount, $refund_quantity,$is_refund_shippingfare);
+						
+					}else{
+						
+						$order_history = array();
+						$order_history['order_id'] = $id;
+						$order_history['order_status_id'] = 19;
+						$order_history['notify'] = 0;
+						$order_history['comment'] =  '后台子订单退款，退数量'.$refund_quantity.'个，金额'.$refund_money.'元';
+						$order_history['date_added'] = time();
+						
+						M('lionfish_comshop_order_history')->add( $order_history );
+					}
+					
+					
+					show_json(1, array('url' => $_SERVER['HTTP_REFERER']));
+				}
+			}
+		}
+		
+		
+		
+		$this->display();
 	}
 	
 	
@@ -470,7 +601,7 @@ class OrderController extends CommonController{
 						{
 							$comment .= '. 退库存：'.$total_quantity;
 						}else{
-							$comment .= '. 不退库存';
+							$comment .= '. 不退库存，不减销量';
 						}
 					
 						$history_data = array();
@@ -1077,6 +1208,7 @@ class OrderController extends CommonController{
 		//$order_history['order_status_id'] = 18;
 		
 		$order_status_arr[18] = '已结算';
+		$order_status_arr[19] = '商品部分退款';
 		
 		
 		foreach( $history_list as  &$val )
@@ -2105,7 +2237,7 @@ class OrderController extends CommonController{
 			}
 			//----------redis end
 			
-			$data['is_has_refund_deliveryfree'] = isset($data['is_has_refund_deliveryfree']) ? $data['is_has_refund_deliveryfree'] : 1;
+			$data['is_has_refund_deliveryfree'] = isset($data['is_has_refund_deliveryfree']) ? $data['is_has_refund_deliveryfree'] : 0;
 			
 			
 			D('Seller/Config')->update($data);

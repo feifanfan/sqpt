@@ -96,6 +96,161 @@ class ExcelModel{
 		
 	}
 	
+	
+	public function export_delivery_list_pinew($params_list, $list = array())
+	{
+		if (PHP_SAPI == 'cli') {
+			exit('This example should only be run from a Web Browser');
+		}
+		
+		require_once ROOT_PATH . '/ThinkPHP/Library/Vendor/phpexcel/PHPExcel.php';
+		$excel = new \PHPExcel();
+		
+		$excel->getProperties()->setCreator('狮子鱼商城')->setLastModifiedBy('狮子鱼商城')->setTitle('Office 2007 XLSX Test Document')->setSubject('Office 2007 XLSX Test Document')->setDescription('Test document for Office 2007 XLSX, generated using PHP classes.')->setKeywords('office 2007 openxml php')->setCategory('report file');
+		$sheet = $excel->setActiveSheetIndex(0);
+		
+		
+		/**
+		["200_"]=>
+		  array(4) {
+			["goods_name"]=>
+			string(15) "牙刷【李】"
+			["goods_goodssn"]=>
+			string(0) ""
+			["goods_count"]=>
+			int(10)
+			["head_goods_list"]=>
+			array(2) {
+			  [1]=>
+			  array(5) {
+				["price"]=>
+				string(6) "0.0100"
+				["total_price"]=>
+				float(0.09)
+				["buy_quantity"]=>
+				int(9)
+				["head_name"]=>
+				string(11) "15865422541"
+				["total_quatity"]=>
+				int(9)
+			  }
+			  [118]=>
+			  array(5) {
+				["price"]=>
+				string(6) "0.0100"
+				["total_price"]=>
+				float(0.01)
+				["buy_quantity"]=>
+				string(1) "1"
+				["head_name"]=>
+				string(11) "18919633344"
+				["total_quatity"]=>
+				string(1) "1"
+			  }
+			}
+		  }
+		  **/
+		$sheet->setCellValue('A1', '序号'); 
+		$sheet->setCellValue('B1', '商品编码'); 
+		$sheet->setCellValue('C1', '商品名称'); 
+		$sheet->setCellValue('D1', '规格'); 
+		$sheet->setCellValue('E1', '单价'); 
+		$sheet->setCellValue('F1', '总价'); 
+		$sheet->setCellValue('G1', '订购数'); 
+		$sheet->setCellValue('H1', '团长'); 
+		$sheet->setCellValue('I1', '合计数'); 
+
+		
+		
+		
+		$i =1;
+		$rownum = 1;
+		
+	
+	
+		foreach( $params_list as  $params )
+		{
+			$next_postion_begin = $rownum + 1;
+			
+			for($j=1;$j<= count($params['head_goods_list']); $j++)
+			{
+				$rownum++;
+			}
+			
+			if( count($params['head_goods_list']) > 1 )
+			{
+				//需要合并了
+				$sheet->mergeCells('A'.$next_postion_begin.':A'.$rownum);
+				$sheet->getStyle('A'.$next_postion_begin.':A'.$rownum)->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+				
+				$sheet->mergeCells('B'.$next_postion_begin.':B'.$rownum);
+				$sheet->getStyle('B'.$next_postion_begin.':B'.$rownum)->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+				
+				$sheet->mergeCells('C'.$next_postion_begin.':C'.$rownum);
+				$sheet->getStyle('C'.$next_postion_begin.':C'.$rownum)->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+				
+				
+				$sheet->mergeCells('D'.$next_postion_begin.':D'.$rownum);
+				$sheet->getStyle('D'.$next_postion_begin.':D'.$rownum)->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+				
+				
+				$sheet->mergeCells('I'.$next_postion_begin.':I'.$rownum);
+				$sheet->getStyle('I'.$next_postion_begin.':I'.$rownum)->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+				
+			}
+			
+			$sheet->setCellValue('A'.$next_postion_begin , $i); 
+			$sheet->setCellValue('B'.$next_postion_begin ,  $params['goods_goodssn'] ); 
+			$sheet->setCellValue('C'.$next_postion_begin ,  $params['goods_name'] );
+			$sheet->setCellValue('D'.$next_postion_begin ,  $params['sku_str'] );
+			
+			$k = $next_postion_begin;
+			foreach( $params['head_goods_list'] as $head_goods )
+			{
+				$sheet->setCellValue('E'.$k ,  $head_goods['price'] );
+				$sheet->setCellValue('F'.$k ,  $head_goods['total_price'] );
+				$sheet->setCellValue('G'.$k ,  $head_goods['buy_quantity'] );
+				$sheet->setCellValue('H'.$k ,  $head_goods['head_name'] );
+				$k++;
+			}
+			
+			$sheet->setCellValue('I'.$next_postion_begin ,  $params['goods_count'] );
+			$i++;
+		}
+		
+		
+		
+		$excel->getActiveSheet()->setTitle($list['title']);
+		
+		
+		$filename = ($list['title'] . '-' . date('Y-m-d H:i', time()));
+		
+		header('pragma:public');
+		header('Content-type:application/vnd.ms-excel;charset=utf-8;name="'.$params['title'].'.xls"');
+		header("Content-Disposition:attachment;filename=".$filename.".xls");//attachment新窗口打印inline本窗口打印
+		$objWriter = \PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+		$objWriter->save('php://output');
+		exit;
+		
+		
+		
+		
+		
+		
+		$excel->getActiveSheet()->setTitle($list['title']);
+		
+		
+		$filename = ($list['title'] . '-' . date('Y-m-d H:i', time()));
+		
+		header('pragma:public');
+		header('Content-type:application/vnd.ms-excel;charset=utf-8;name="'.$params['title'].'.xls"');
+		header("Content-Disposition:attachment;filename=".$filename.".xls");//attachment新窗口打印inline本窗口打印
+		$objWriter = \PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+		$objWriter->save('php://output');
+		exit;
+		
+	}
+	
 	/**
 		批量导出团长配送清单
 	**/

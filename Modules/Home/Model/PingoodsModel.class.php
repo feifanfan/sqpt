@@ -1141,6 +1141,10 @@ class PingoodsModel {
 			}else if( $attachment_type_arr['value'] == 2 ){
 				save_image_to_alioss($image_dir.$file_name,'Uploads/image/'.'goods'.date('Y-m-d').'/'.$file_name);
 				
+			}else if( $attachment_type_arr['value'] == 3 ){
+			
+				$res =	save_image_to_txyun($image_dir.$file_name,'Uploads/image/'.'goods'.date('Y-m-d').'/'.$file_name);
+				
 			}
 			
 			return 'goods'.date('Y-m-d').'/'.$file_name;

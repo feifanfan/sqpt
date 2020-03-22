@@ -2454,6 +2454,7 @@ class UserController extends CommonController {
 		$result['show_signinreward_icon'] = $show_signinreward_icon;
 		//签到奖励  end
 		
+		$result['commiss_diy_name'] = D('Home/Front')->get_config_by_name('commiss_diy_name');
 		
 		
 		
@@ -3143,19 +3144,5 @@ class UserController extends CommonController {
 		echo json_encode($result);
 		die();
 	}
-
-	//获取订阅消息接口
-    public function getSubcribeMessage(){
-        $data = D('Seller/Config')->get_all_config();
-        $need_data = array();
-        foreach ($data as $key=>$value){
-            if(substr($key,0,22)=='weprogram_subtemplate_'){
-                if(!empty($value)){
-                    $need_data[]=['key'=>$key,'value'=>$value];
-                }
-            }
-        }
-        echo json_encode($need_data);
-        die();
-    }
+	
 }

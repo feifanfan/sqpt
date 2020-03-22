@@ -1196,8 +1196,24 @@ class GoodsController extends CommonController {
 		$need_data['diy_arrive_details'] = $goods['diy_arrive_details'];
 		
 		
+		$need_data['is_can_headsales'] = 1;
+		
+		
 		//团长休息
 		$community_id = $gpc['community_id'];
+		
+		if( isset($community_id) && $community_id > 0 )
+		{
+			$is_can_buy = D('Seller/Communityhead')-> check_goods_can_community($id, $community_id);
+			
+			if( !$is_can_buy )
+			{
+				$need_data['is_can_headsales'] = 0;
+			}
+			// is_all_sale
+		}
+		
+		
 		$is_comunity_rest = D('Seller/Communityhead')->is_community_rest($community_id);
 		
 		$open_man_orderbuy = D('Home/Front')->get_config_by_name('open_man_orderbuy');

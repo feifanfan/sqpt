@@ -15,7 +15,8 @@ namespace Home\Model;
 class WeixinModel{
 
 	
-	public function refundOrder($order_id, $money=0, $uniacid=0,$order_goods_id=0,$is_back_sellcount = 1)
+	public function refundOrder($order_id, $money=0, $uniacid=0,$order_goods_id=0,$is_back_sellcount = 1,$refund_quantity = 0,$is_zi_order_refund =0)
+	
 	{
 		$lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
 		
@@ -122,12 +123,20 @@ class WeixinModel{
 				{
 					if($order_goods_id ==  $order_goods['order_goods_id'] )
 					{
+						
 						if($is_back_sellcount == 1)
-							$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
+						{
+							if( $is_zi_order_refund == 1 && $refund_quantity > 0 )
+							{
+								$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$refund_quantity,2);
+							}else{
+								$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
+							}
+						}
 						
 						$score_refund_info = M('lionfish_comshop_member_integral_flow')->where( array('order_goods_id' => $order_goods['order_goods_id'],'order_id' =>$order_info['order_id'],'type' => 'orderbuy' ) )->find();
 						
-						if( !empty($score_refund_info) )
+						if( !empty($score_refund_info) && $is_zi_order_refund == 1  )
 						{
 							 D('Admin/Member')->sendMemberPointChange($order_info['member_id'],$score_refund_info['score'], 0 ,'退款增加积分', 'refundorder', $order_info['order_id'] ,$order_goods['order_goods_id'] );
 						}
@@ -150,7 +159,8 @@ class WeixinModel{
 				}
 			}
 			//分佣也要退回去
-			D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
+			if($is_zi_order_refund == 0)
+					D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
 				
 			return array('code' => 1);
 			//$this->refundOrder_success($order_info,$openId);
@@ -177,12 +187,20 @@ class WeixinModel{
 				{
 					if($order_goods_id ==  $order_goods['order_goods_id'] )
 					{
+						
 						if($is_back_sellcount == 1)
-							$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
+						{
+							if( $is_zi_order_refund == 1 && $refund_quantity > 0 )
+							{
+								$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$refund_quantity,2);
+							}else{
+								$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
+							}
+						}	
 						
 						$score_refund_info = M('lionfish_comshop_member_integral_flow')->where( array('order_goods_id' => $order_goods['order_goods_id'],'order_id' =>$order_info['order_id'],'type' => 'orderbuy' ) )->find();
 						
-						if( !empty($score_refund_info) )
+						if( !empty($score_refund_info) && $is_zi_order_refund == 1 )
 						{
 							 D('Admin/Member')->sendMemberPointChange($order_info['member_id'],$score_refund_info['score'], 0 ,'退款增加积分', 'refundorder', $order_info['order_id'] ,$order_goods['order_goods_id'] );
 						}
@@ -206,7 +224,8 @@ class WeixinModel{
 			
 			}
 			//分佣也要退回去
-			D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
+			if($is_zi_order_refund == 0)
+				D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
 			return array('code' => 1);
 			
 		}
@@ -231,7 +250,14 @@ class WeixinModel{
 			foreach ($order_goods as $key => $value) {
 				//($order_id,$option,$goods_id,$quantity,$type='1')
 				if($is_back_sellcount == 1)
-					$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$value['rela_goodsoption_valueid'],$value['goods_id'],$value['quantity'],2);
+				{
+					if( $is_zi_order_refund == 1 && $refund_quantity > 0 )
+					{
+						$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$value['rela_goodsoption_valueid'],$value['goods_id'],$refund_quantity,2);
+					}else{
+						$goods_model->del_goods_mult_option_quantity($order_info['order_id'],$value['rela_goodsoption_valueid'],$value['goods_id'],$value['quantity'],2);
+					}
+				}	
 				
 				$score_refund_info = M('lionfish_comshop_member_integral_flow')->where( array('order_id' =>$order_info['order_id'] ,'order_goods_id' =>$value['order_goods_id'] ,'type' => 'orderbuy') )->find();
 				
@@ -385,12 +411,18 @@ class WeixinModel{
 						if($order_goods_id ==  $order_goods['order_goods_id'] )
 						{
 							if($is_back_sellcount == 1)
-								D('Home/Pingoods')->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
-							
+							{
+								if( $is_zi_order_refund == 1 && $refund_quantity > 0 )
+								{
+									D('Home/Pingoods')->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$refund_quantity,2);
+								}else{
+									D('Home/Pingoods')->del_goods_mult_option_quantity($order_info['order_id'],$order_goods['rela_goodsoption_valueid'],$order_goods['goods_id'],$order_goods['quantity'],2);
+								}
+							}
 							
 							$score_refund_info = M('lionfish_comshop_member_integral_flow')->where( array('order_id' => $order_info['order_id'],'order_goods_id'=>$order_goods['order_goods_id'] ,'type' => 'orderbuy') )->find();
 							
-							if( !empty($score_refund_info) )
+							if( !empty($score_refund_info) && $is_zi_order_refund == 1  )
 							{
 								 D('Admin/Member')->sendMemberPointChange($order_info['member_id'],$score_refund_info['score'], 0 ,'退款增加积分', 'refundorder', $order_info['order_id'] ,$order_goods['order_goods_id'] );
 							}
@@ -418,7 +450,8 @@ class WeixinModel{
 		
 				 
 				//分佣也要退回去 
-				D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
+				if($is_zi_order_refund == 0)
+					D('Seller/Community')->back_order_commission($order_info['order_id'],$order_goods_id);
 				
 				return array('code' => 1);
 				

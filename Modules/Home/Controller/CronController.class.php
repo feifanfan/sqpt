@@ -131,6 +131,16 @@ class CronController extends CommonController {
 				
 				foreach($order_list as $order )
 				{
+					
+					//检查是否有部分退款
+					
+					$order_refund_info = M('lionfish_comshop_order_refund')->field('ref_id')->where( array('order_id' => $order['order_id'], 'state' => 0 ) )->find();
+					
+					if( !empty($order_refund_info) )
+					{
+						continue;
+					}
+					
 					D('Home/Frontorder')->receive_order($order['order_id'], true);
 				}
 			}
@@ -183,6 +193,59 @@ class CronController extends CommonController {
 		
 		S('statementorder_flag', 0);
 		
+		$runtimelog_flag = S('runtimelog_flag');
+		$next_time = time()+86400;
+		
+		if( empty($runtimelog_flag) || $runtimelog_flag > $next_time )
+		{
+			$hour = date('H');
+			
+			$hour = intval($hour);
+			
+			if( $hour == 2 )
+			{
+				$this->clear_runtimelog();
+			
+				S('statementorder_flag', time() );
+			}
+		}
+		
+	}
+	
+	private function clear_runtimelog()
+	{
+		$logs_path = ROOT_PATH.'Runtime/Logs';
+		$cache_path = ROOT_PATH.'Runtime/Cache';
+		$temp_path = ROOT_PATH.'Runtime/Temp';
+		
+		
+		$this->removeDir($logs_path);
+		$this->removeDir($cache_path);
+		$this->removeDir($temp_path);
+		
+		echo 'ok';
+	}
+	
+		/**
+	   * removeDir 删除文件夹下所有文件
+	   * @param $path
+	   */
+	private  function removeDir($path)
+	{
+		if(is_dir($path)){
+			if($handle = opendir($path)){
+				while($file = readdir($handle)){
+					if(is_dir($path.'/'.$file.'/') && $file!='.' && $file!='..'){
+						$this->removeDir($path.'/'.$file.'/');
+					} else {
+						if($file!='.' && $file!='..'){
+							@unlink($path.'/'.$file);
+						}
+					}
+				}
+				closedir($handle);
+			}
+		}
 	}
 	
 	public function refund()
