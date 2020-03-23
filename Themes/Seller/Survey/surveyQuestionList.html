@@ -69,18 +69,14 @@
                 <input type='checkbox' name="checkall" lay-skin="primary" lay-filter="checkboxall"  />
             </th>
             <th style="width:80px;text-align:center;">ID</th>
-            <th style="width:200px;">主题名称</th>
-            <th style="">开始时间</th>
-            <th style="">结束时间</th>
+            <th style="width:200px;">问题</th>
         </tr>
         <foreach name="list" item="item">
-        <tr>
-            <td><input type='checkbox' name="item_checkbox" class="checkone" lay-skin="primary" value="{$item['id']}"/></td>
-            <td>{$item.id}</td>
-            <td>{$item.name}</td>
-            <td>{$item.starttime}</td>
-            <td>{$item.endtime}</td>
-        </tr>
+            <tr>
+                <td><input type='checkbox' name="item_checkbox" class="checkone" lay-skin="primary" value="{$item['id']}"/></td>
+                <td>{$item.id}</td>
+                <td>{$item.name}</td>
+            </tr>
         </foreach>
         </thead>
         <td colspan="5" style="text-align: right">

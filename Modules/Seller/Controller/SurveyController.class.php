@@ -50,4 +50,62 @@ class SurveyController extends CommonController
         $this->assign('item',$item);
         $this->display('addSurvey');
     }
+
+    /**
+     * 添加问题
+     */
+    public function addSurveyQuestion(){
+        if(empty(I('get.topicid'))){
+            show_json(0, '未定义主题id');
+            die;
+        }
+        if(IS_POST){
+            $data = I('post.');
+            foreach ($data['data'] as $item){
+                $question['topicid'] = I('get.topicid');
+                $question['question'] = $item['name'];
+                M('lionfish_comshop_survey_question')->add($question);
+            }
+            show_json(1,array('url' => '/seller.php?s=/Survey/addSurveyQuestion/list'));
+        }
+        $this->display();
+    }
+
+    /**
+     * 问题列表
+     */
+    public function surveyQuestionList(){
+        $topicid = I('get.topicid');
+        $list = M('lionfish_comshop_survey_question')->where(['topicid'=>$topicid])->select();
+        $this->assign('list',$list);
+        $this->display();
+    }
+
+    /**
+     * 编辑问题
+     */
+    public function editSurveyQuestion(){
+
+    }
+
+    /**
+     * 添加答案
+     */
+    public function addSurveyAnswer(){
+
+    }
+
+    /**
+     * 答案列表
+     */
+    public function surveyAnswerList(){
+
+    }
+
+    /**
+     * 编辑答案
+     */
+    public function editSurveyAnswer(){
+
+    }
 }
