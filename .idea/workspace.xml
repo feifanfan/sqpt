@@ -3,6 +3,40 @@
   <component name="ChangeListManager">
     <list default="true" id="1cdf2692-57bc-4231-aa8d-5e2d3fa1f410" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Modules/Admin/Model/MemberModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Admin/Model/MemberModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/CarController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/CronController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/CronController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/GoodsController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/GoodsController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/IndexController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/IndexController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/OrderController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/OrderController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/SolitaireController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/SolitaireController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Controller/UserController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Controller/UserController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Model/CarModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Model/PingoodsModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Model/PingoodsModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Home/Model/WeixinModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Home/Model/WeixinModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/DeliveryController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/DeliveryController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/GoodsController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/GoodsController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/GroupController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/GroupController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/OrderController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/OrderController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Model/ExcelModel.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Model/ExcelModel.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runtime/Temp/095936b39bf0532f31ab0b67e10ac511.php" beforeDir="false" afterPath="$PROJECT_DIR$/Runtime/Temp/095936b39bf0532f31ab0b67e10ac511.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runtime/Temp/c3524607a9834399915852a82d4d0e7f.php" beforeDir="false" afterPath="$PROJECT_DIR$/Runtime/Temp/c3524607a9834399915852a82d4d0e7f.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Seller/Config/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Seller/Config/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Seller/Delivery/delivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Seller/Delivery/delivery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Seller/Order/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Seller/Order/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Seller/Shipping/addshipping.html" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Seller/Shipping/addshipping.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Themes/Seller/Shipping/templates.html" beforeDir="false" afterPath="$PROJECT_DIR$/Themes/Seller/Shipping/templates.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Modules/Common/Conf/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Common/Conf/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Seller/Conf/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Seller/Conf/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runtime/Temp/c3524607a9834399915852a82d4d0e7f.php" beforeDir="false" afterPath="$PROJECT_DIR$/Runtime/Temp/c3524607a9834399915852a82d4d0e7f.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wxapp.php" beforeDir="false" afterPath="$PROJECT_DIR$/wxapp.php" afterDir="false" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,12 +50,51 @@
       <file leaf-file-name="SurveyController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/SurveyController.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="299">
               <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="85666">
+              <caret line="2965" column="43" selection-start-line="2965" selection-start-column="31" selection-end-line="2965" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="GoodsModel.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Seller/Model/GoodsModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29406">
+              <caret line="1025" column="62" selection-start-line="1025" selection-start-column="62" selection-end-line="1025" selection-end-column="62" />
+=======
+            <state relative-caret-position="276">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="Jssdk.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Lib/Weixin/Jssdk.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9802">
+              <caret line="338" column="47" selection-start-line="338" selection-start-column="47" selection-end-line="338" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addcategory.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Themes/Seller/Goods/addcategory.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3944">
+              <caret line="136" column="47" selection-start-line="136" selection-start-column="26" selection-end-line="136" selection-end-column="47" />
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
@@ -29,10 +102,54 @@
               <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
             </state>
           </provider>
+=======
+      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Common/Common/function.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19372">
+              <caret line="674" column="25" selection-start-line="674" selection-start-column="25" selection-end-line="674" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Themes/Seller/Index/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1682">
+              <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth_upgrade.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Themes/Seller/System/auth_upgrade.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="SystemController.class.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2282">
+              <caret line="220" selection-start-line="220" selection-end-line="220" />
+              <folding>
+                <element signature="e#6#353#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addgoods.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Themes/Seller/Goods/addgoods.html">
+=======
+      <file leaf-file-name="SystemController.class.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php">
+          <provider selected="true" editor-type-id="text-editor" />
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
         </entry>
       </file>
       <file leaf-file-name="UserController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/UserController.class.php">
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4922">
               <caret line="225" column="19" selection-start-line="225" selection-start-column="15" selection-end-line="225" selection-end-column="19" />
@@ -72,7 +189,12 @@
       <find />
       <find>modify_goods</find>
       <find>getAccessToken</find>
+<<<<<<< HEAD
+      <find>$domain = trim(preg_replace('/http(s)?:\\/\\//', '', rtrim($url, '/')))</find>
+      <find>do_update</find>
+=======
       <find>POST</find>
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
     </findStrings>
     <replaceStrings>
       <replace />
@@ -108,9 +230,16 @@
         <option value="$PROJECT_DIR$/Modules/Seller/Controller/GoodsController.class.php" />
         <option value="$PROJECT_DIR$/Modules/Seller/Model/GoodsModel.class.php" />
         <option value="$PROJECT_DIR$/Modules/Lib/Weixin/Jssdk.class.php" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php" />
+=======
         <option value="$PROJECT_DIR$/wxapp.php" />
         <option value="$PROJECT_DIR$/Modules/Seller/Controller/SurveyController.php" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/.gitignore" />
+=======
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
       </list>
     </option>
   </component>
@@ -145,6 +274,8 @@
               <item name="sqpt" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Modules" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+<<<<<<< HEAD
+=======
             <path>
               <item name="sqpt" type="b2602c69:ProjectViewProjectNode" />
               <item name="sqpt" type="2a2b976b:PhpTreeStructureProvider$1" />
@@ -158,6 +289,7 @@
               <item name="Seller" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
           </expand>
           <select />
         </subPane>
@@ -165,7 +297,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="SearchEverywhereHistoryKey" value=".git&#9;FILE&#9;file://D:/phpStudy/PHPTutorial/WWW/sqpt/.gitignore&#10;car&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CarController.class.php&#10;checkout&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CheckoutController.class.php&#10;Weixinnotify&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Model/WeixinnotifyModel.class.php&#10;pay&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Lib/Weixin/PayNotifyCallBack.class.php&#10;UserMo&#9;null&#9;null&#10;index&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/index.php&#10;seller.php&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/seller.php&#10;orderC&#9;null&#9;null&#10;order&#9;null&#9;null&#10;goods/con&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Themes/Seller/Goods/config.html" />
+=======
+    <property name="SearchEverywhereHistoryKey" value="tpl_form_field_image2&#9;null&#9;null&#10;car&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CarController.class.php&#10;checkout&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Controller/CheckoutController.class.php&#10;Weixinnotify&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Home/Model/WeixinnotifyModel.class.php&#10;pay&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Modules/Lib/Weixin/PayNotifyCallBack.class.php&#10;UserMo&#9;null&#9;null&#10;index&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/index.php&#10;seller.php&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/seller.php&#10;orderC&#9;null&#9;null&#10;order&#9;null&#9;null&#10;goods/con&#9;FILE&#9;file://E:/DataBackup/jiangbei/sqpt.wfjds.com/Themes/Seller/Goods/config.html" />
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -209,13 +345,31 @@
       <workItem from="1584023586563" duration="290000" />
       <workItem from="1584281629073" duration="1970000" />
       <workItem from="1584448621982" duration="3022000" />
+<<<<<<< HEAD
       <workItem from="1584775219058" duration="1545000" />
       <workItem from="1584926213041" duration="140000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1584714890576" duration="328000" />
+      <workItem from="1584847050754" duration="3592000" />
+      <workItem from="1584852867306" duration="2115000" />
+=======
+      <workItem from="1584775219058" duration="1393000" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="49774000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="54124000" />
+=======
+    <option name="totallyTimeSpent" value="49482000" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -223,7 +377,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32943678" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3287234" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -248,6 +402,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -255,6 +410,10 @@
         </state>
       </provider>
     </entry>
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
     <entry file="file://$PROJECT_DIR$/Modules/Seller/Model/GoodsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
@@ -269,6 +428,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
     <entry file="file://$PROJECT_DIR$/Themes/Seller/Goods/addgoods.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10962">
@@ -542,6 +702,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Common/Conf/db.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="85666">
+          <caret line="2965" column="43" selection-start-line="2965" selection-start-column="31" selection-end-line="2965" selection-end-column="43" />
+=======
         <state relative-caret-position="115">
           <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
         </state>
@@ -561,15 +725,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="27" lean-forward="true" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+        </state>
+      </provider>
+    </entry>
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
     <entry file="file://$PROJECT_DIR$/Modules/Seller/Model/GoodsModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
+        <state relative-caret-position="29406">
           <caret line="1025" column="62" selection-start-line="1025" selection-start-column="62" selection-end-line="1025" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Lib/Weixin/Jssdk.class.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="9802">
+          <caret line="338" column="47" selection-start-line="338" selection-start-column="47" selection-end-line="338" selection-end-column="47" />
+=======
         <state relative-caret-position="93">
           <caret line="330" column="8" selection-start-line="330" selection-start-column="8" selection-end-line="330" selection-end-column="8" />
         </state>
@@ -591,6 +770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/SurveyController.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="299">
           <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
@@ -600,6 +780,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+=======
+        <state relative-caret-position="276">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+>>>>>>> f2094a6d6c6444ef294c73068e35f6d5e9cee76b
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Themes/Seller/Goods/addcategory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3944">
+          <caret line="136" column="47" selection-start-line="136" selection-start-column="26" selection-end-line="136" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Themes/Seller/System/auth_upgrade.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Themes/Seller/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1682">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Common/Common/function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19372">
+          <caret line="674" column="25" selection-start-line="674" selection-start-column="25" selection-end-line="674" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Seller/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Seller/Controller/SystemController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2282">
+          <caret line="220" selection-start-line="220" selection-end-line="220" />
+          <folding>
+            <element signature="e#6#353#0#PHP" expanded="true" />
+          </folding>
+>>>>>>> bade114569a13507a30a8a38a8a1a4281941a8b1
         </state>
       </provider>
     </entry>

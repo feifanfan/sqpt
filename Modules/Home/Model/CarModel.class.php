@@ -10,7 +10,7 @@ class CarModel {
 private $data = array();
 	
 	
-	public function get_wecartall_goods($goods_id, $sku_str, $community_id,$token,$car_prefix='cart.')
+	public function get_wecartall_goods($goods_id, $sku_str, $community_id,$token,$car_prefix='cart.',$soli_id ='')
 	{
 		
 		if( $community_id <=0 )
@@ -20,6 +20,11 @@ private $data = array();
 		
 		$key = (int)$goods_id . ':'.$community_id.':';
        
+	    if( !empty($soli_id) )
+		{
+			$key .= $soli_id.':';
+		}
+		
         $key = $car_prefix . $key;
 		
 		
@@ -37,7 +42,38 @@ private $data = array();
 		return $quantity;
 	}
 	
-	public function get_wecart_goods($goods_id, $sku_str, $community_id,$token,$car_prefix='cart.')
+	public function get_wecart_goods_solicount($goods_id, $community_id,$token,$soli_id = '')
+	{
+		
+		$key = (int)$goods_id . ':'.$community_id.':'.$soli_id.':' ;
+		
+		$key = 'soitairecart.'.$key;
+		
+		$car_sql = "select format_data from ".C('DB_PREFIX')."lionfish_comshop_car  
+					where  token ='{$token}' and carkey like '{$key}%' ";
+		$s_arr = M()->query($car_sql);
+		
+		if( !empty($s_arr) )
+		{
+			$s_count = 0;
+			
+			foreach( $s_arr as $val )
+			{
+				$tmp_format_data = unserialize($val['format_data']);
+			
+				$s_count += $tmp_format_data['quantity'];
+			}
+			return $s_count;
+		}else{
+			return 0;
+		}
+		
+	}  
+	
+	
+	
+	
+	public function get_wecart_goods($goods_id, $sku_str, $community_id,$token,$car_prefix='cart.',$soli_id = '')
 	{
 		
 		if( $community_id <=0 )
@@ -48,6 +84,11 @@ private $data = array();
 		
 		$key = (int)$goods_id . ':'.$community_id.':';
        
+	    if( !empty($soli_id) )
+		{
+			$key .= $soli_id.':';
+		}
+	    
         if ($sku_str) {
             $key.= base64_encode($sku_str) . ':';
         } else {
@@ -82,9 +123,15 @@ private $data = array();
 		return $quantity;
 	}
 	
-	 public function addwecar($token, $goods_id, $format_data = array() , $option, $community_id,$car_prefix='cart.') {
+	 public function addwecar($token, $goods_id, $format_data = array() , $option, $community_id,$car_prefix='cart.',$soli_id='') {
 		
         $key = (int)$goods_id . ':'.$community_id.':';
+		
+		if( !empty($soli_id) )
+		{
+			$key .= $soli_id.':';
+		}
+		
         $qty = $format_data['quantity'];
         if ($option) {
             $key.= base64_encode($option) . ':';
@@ -92,13 +139,6 @@ private $data = array();
             $key.= ':'; 
         }
 		
-		
-		if( $format_data['soli_id'] > 0 )
-		{
-			//如果是群接龙，移除群接龙以外的购物车内容begin
-			
-			//移除购物车以外的内容end
-		}
 		
 		if( $format_data['is_just_addcar'] == 0 )
 		{
@@ -216,7 +256,7 @@ private $data = array();
         $this->data = array();
     }
 	
-	 public function get_all_goodswecar($buy_type = 'dan', $token,$is_pay_need = 1, $community_id) {
+	 public function get_all_goodswecar($buy_type = 'dan', $token,$is_pay_need = 1, $community_id,$soli_id='') {
 		
 		
         if (!($this->data)) {
@@ -238,6 +278,29 @@ private $data = array();
 				$cart_sql = "select * from ".C('DB_PREFIX')."lionfish_comshop_car  
 						where token='{$token}' and community_id={$community_id} and carkey like 'pintuancart.%' order by modifytime desc ";
 				$cart = M()->query($cart_sql);
+			}
+			
+			else if( $buy_type == 'soitaire' )
+			{
+				$cart_sql = "select * from ".C('DB_PREFIX')."lionfish_comshop_car  
+						where token='{$token}' and  community_id={$community_id} and carkey like 'soitairecart.%' order by modifytime desc ";
+				$cart_arr = M()->query($cart_sql);
+				
+				
+				
+				$cart = array();
+				if( !empty($cart_arr) )
+				{
+					foreach( $cart_arr as $key => $val )
+					{
+						$key_arr = explode(':', $val['carkey']);
+						if( $key_arr[2] == $soli_id )
+						{
+							$cart[$key] = $val;
+						}
+					}
+				}
+				
 			}
 			else if( $buy_type == 'integral' )
 			{
@@ -499,7 +562,7 @@ private $data = array();
 					$is_open_fullreduction = D('Home/Front')->get_config_by_name('is_open_fullreduction');
 					$can_man_jian = 0;
 					
-					if( $buy_type == 'dan' )
+					if( $buy_type == 'dan' || $buy_type == 'soitaire')
 					{
 						if( !empty($is_open_fullreduction) && $is_open_fullreduction == 1)
 						{
@@ -632,6 +695,14 @@ private $data = array();
 						where token='{$token}'  and carkey like 'pintuancart.%' ";
 			$s = M()->query($cart_sql);
 		}
+		
+		else if( $buy_type == 'soitaire' )
+		{
+			$cart_sql = "select * from ".C('DB_PREFIX')."lionfish_comshop_car  
+						where token='{$token}' and carkey like 'soitairecart.%' ";
+			$s = M()->query($cart_sql);
+		}
+		
 		else if( $buy_type == 'integral' ) 
 		{
 			$cart_sql = "select * from ".C('DB_PREFIX')."lionfish_comshop_car  
@@ -685,44 +756,5 @@ private $data = array();
 		
 		return $quantity;
 	}
-
-    /** 发送订阅消息
-     * @param $toustid
-     * @param $tmpid
-     * @param array $info
-     * @return bool
-     */
-    public function sendSubscribeMessage($toustid,$tmpid,array $info){
-        $appid_info 	=  M('lionfish_comshop_config')->where( array('name' => 'wepro_appid') )->find();
-        $appsecret_info =  M('lionfish_comshop_config')->where( array('name' => 'wepro_appsecret') )->find();
-        $mchid_info =  M('config')->where( array('name' => 'MCHID') )->find();
-
-        $weixin_config = array();
-        $weixin_config['appid'] = $appid_info['value'];
-        $weixin_config['appscert'] = $appsecret_info['value'];
-        $weixin_config['mchid'] = $mchid_info['value'];
-//        var_dump('<pre>');
-//        var_dump($weixin_config);
-        $jssdk = new \Lib\Weixin\Jssdk( $weixin_config['appid'], $weixin_config['appscert']);
-        $re_access_token = $jssdk->getAccessToken();
-//        var_dump($weixin_config);
-//        var_dump('<br>');
-//        var_dump($re_access_token);
-//        var_dump('<br>');
-        $url = 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token='.$re_access_token;
-//         $data = "{'touser': 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q', 'template_id': 'CBHk9t7BP7JsC5R-Xagu406PpujhwrtsnJ2nTbBgvXU','page': 'index','data': {'character_string1': {'DATA': '1234567888'},'date3': {'DATA': '2020-02-28 10:00:00'},'name4': {'DATA':'测试商品'
-// },'amount2': {'DATA': '100'}, 'thing5': {'DATA': '备注内容' },}}";
-        $data['touser'] =$toustid;//接受者openid
-        $data['template_id'] = $tmpid;
-        $data_temp['name4']['value'] = $info['name'];
-        $data_temp['date3']['value'] = $info['time'];
-        $data_temp['amount2']['value'] = $info['total'];
-        $data_temp['character_string1']['value'] = $info['oid'];
-        $data_temp['thing5']['value'] = $info['remark'];
-        $data['data'] = $data_temp;
-
-
-        $ret = sendhttps_post($url,json_encode($data));
-        return true;
-    }
+	
 }

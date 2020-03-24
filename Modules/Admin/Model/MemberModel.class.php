@@ -110,7 +110,7 @@ class MemberModel{
 		
 		$mb_info = M('lionfish_comshop_member')->where( array('member_id' => $member_id ) )->find();
 		
-		$next_level = M('lionfish_comshop_member_level')->where( "id >".$mb_info['level_id']." is_auto_grade =1 " )->order('id asc')->find();
+		$next_level = M('lionfish_comshop_member_level')->where( "id >".$mb_info['level_id']." and is_auto_grade =1 " )->order('id asc')->find();
 		
 		if( !empty($next_level) && $pay_money >= $next_level['level_money'] )
 		{

@@ -587,7 +587,7 @@ class SolitaireController extends CommonController {
 		
 		$member_info = M('lionfish_comshop_member')->where( array('member_id' => $community_info['member_id'] ) )->find();
 			
-		$soli_info['is_involved'] = false; //是否参与
+		//$soli_info['is_involved'] = false; //是否参与
 		// 团长中心详情
 		if($is_head==1) {
 			if(!$is_Login)
@@ -603,11 +603,11 @@ class SolitaireController extends CommonController {
 			}
 		} else {
 			//是否已参与
-			if($is_Login) {
-				$involved = M('lionfish_comshop_order')->where( "member_id={$member_id} and soli_id={$id} and order_status_id in (1,4,6,7,11,12,14)" )->find();
+			//if($is_Login) {
+			//	$involved = M('lionfish_comshop_order')->where( "member_id={$member_id} and soli_id={$id} and order_status_id in (1,4,6,7,11,12,14)" )->find();
 				
-				if(!empty($involved)) $soli_info['is_involved'] = true;
-			}
+			//	if(!empty($involved)) $soli_info['is_involved'] = true;
+			//}
 		}
 
 		if( empty($soli_info['qrcode_image']))

@@ -1084,7 +1084,7 @@ class GroupController extends CommonController{
 		$id = intval($_GPC['id']);
 		if (!empty($id)) {
 			
-			$item = M('lionfish_comshop_goods_tags')->field('id,tagname,tagcontent,state,sort_order')->where( array('id' =>$id ) )->find();	
+			$item = M('lionfish_comshop_goods_tags')->field('id,tagname,tagcontent,state,sort_order,type')->where( array('id' =>$id ) )->find();	
 
 			if (json_decode($item['tagcontent'], true)) {
 				$labelname = json_decode($item['tagcontent'], true);
@@ -1165,7 +1165,7 @@ class GroupController extends CommonController{
 		}
 
 		foreach ($items as $item) {
-			M('lionfish_comshop_goods_tags')->where( array('id' => $item['id']) )->save( array('state' => intval($_GPC['state'])) );
+			M('lionfish_comshop_goods_tags')->where( array('id' => $item['id']) )->save( array('state' => intval($_GPC['value'])) );
 		}
 
 		show_json(1, array('url' => U('group/goodstag')));

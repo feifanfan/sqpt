@@ -283,11 +283,167 @@ class DeliveryController extends CommonController{
 				//-------------------这里要合并结束----------------------
 				
 			}
-			//导出团长旗下订单
+			
+			//导出团长总单 样式2
 			if($gpc['export'] == 3)
 			{
+				//导出配送总单
 				
+				$columns = array(
+					array('title' => '序号', 'field' => 'sn', 'width' => 12),
+					array('title' => '商品编码', 'field' => 'goods_goodssn', 'width' => 20), 
+					array('title' => '商品名称', 'field' => 'goods_name', 'width' => 24),
+					array('title' => '商品规格', 'field' => 'sku_name', 'width' => 24),
+					
+					array('title' => '单价', 'field' => 'price', 'width' => 12),
+					array('title' => '总价', 'field' => 'total_price', 'width' => 12),
+					array('title' => '订购数', 'field' => 'quantity', 'width' => 12),
+					array('title' => '团长', 'field' => 'head_name', 'width' => 12),
+					array('title' => '合计数量', 'field' => 'total_quantity', 'width' => 12),
+					
+				);
+				
+				//-----------------  这里要合并开始 downexcel---------------------
+				
+				$tuanz_data_list = array();
+				$exportlist = array();
+				
+				$list_id_arr = array();
+				
+				
+				foreach($list as $val)
+				{
+					$list_id = $val['id'];
+					
+							
+					$list_data = M('lionfish_comshop_deliverylist_goods')->where( array('list_id' =>$list_id ) )->order('id desc')->select();
+				   
+				    
+					$list_info = M('lionfish_comshop_deliverylist')->where( array('id' => $list_id ) )->find();
+					
+					if( $val['clerk_id'] > 0)
+					{	
+						$clerk_name = M('lionfish_comshop_deliveryclerk')->where( array('id' => $val['clerk_id'] ) )->find();
+						
+						$list_info['clerk_info'] = $clerk_name['name'];
+					}
+			
+					if( !isset($exportlist[$list_info['head_id']]) )
+					{
+						$exportlist[$list_info['head_id']] = array('list_info' => $list_info ,'data' => array() );
+					}
+					
+					$i =1;
+					foreach($list_data as $val)
+					{
+						$tmp_exval = array();
+						$tmp_exval['num_no'] = $i;
+						$tmp_exval['name'] = $val['goods_name'];
+						$tmp_exval['quantity'] = $val['goods_count'];
+						$tmp_exval['sku_str'] = $val['sku_str'];
+						
+						
+						$gd_info = M('lionfish_comshop_goods')->field('codes')->where( array('id' => $val['goods_id'] ) )->find();
+						
+						$tmp_exval['goods_goodssn'] = $gd_info['codes'];		
+						$info = M('lionfish_comshop_order_goods')->field('price')->where( array('rela_goodsoption_valueid' => $val['rela_goodsoption_valueid'],'goods_id' =>$val['goods_id'] ) )->order('order_goods_id desc')->find();
+						
+						
+						$tmp_exval['price'] = $info['price'];
+						$tmp_exval['total_price'] = round($info['price'] * $val['goods_count'],2) ;
+						
+						//goods_id  rela_goodsoption_valueid
+						
+						if( isset($exportlist[$list_info['head_id']]['data'][ $val['goods_id'].'_'.$val['rela_goodsoption_valueid'] ]) )
+						{
+							$tmp_exp = $exportlist[$list_info['head_id']]['data'][ $val['goods_id'].'_'.$val['rela_goodsoption_valueid'] ];
+							
+							$tmp_exval['quantity'] += $tmp_exp['quantity'];
+							$tmp_exval['total_price'] = round($info['price'] * $tmp_exval['quantity'],2) ;
+							
+							$exportlist[$list_info['head_id']]['data'][ $val['goods_id'].'_'.$val['rela_goodsoption_valueid'] ] = $tmp_exval;
+						}else{
+							$exportlist[$list_info['head_id']]['data'][ $val['goods_id'].'_'.$val['rela_goodsoption_valueid'] ] = $tmp_exval;
+						}
+						
+						//$exportlist[] = $tmp_exval;
+						$i++;
+					}
+				}
+				
+				
+				$new_need_goods_list = array();
+				
+				
+				foreach($exportlist as $val)
+				{
+					$head_name = $val['list_info']['head_name'];
+					
+					
+					$head_id = $val['list_info']['head_id'];
+					
+					foreach($val['data'] as $gid_skuid => $goods_info)
+					{
+						if( empty($new_need_goods_list) || !isset($new_need_goods_list[$gid_skuid]) )
+						{
+							//新签
+							$new_need_goods_list[$gid_skuid] = array();
+							$new_need_goods_list[$gid_skuid]['goods_name'] = $goods_info['name'];
+							$new_need_goods_list[$gid_skuid]['sku_str'] = $goods_info['sku_str'];
+							$new_need_goods_list[$gid_skuid]['goods_goodssn'] = $goods_info['goods_goodssn'];
+							$new_need_goods_list[$gid_skuid]['goods_count'] = $goods_info['quantity'];
+							$new_need_goods_list[$gid_skuid]['head_goods_list'] = array();
+							$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id] = array(
+																								'price' => $goods_info['price'],
+																								'total_price' => $goods_info['total_price'],
+																								'buy_quantity' => $goods_info['quantity'],
+																								'head_name' => $head_name,
+																								'total_quatity' => $goods_info['quantity']
+																							);
+						}else if( isset($new_need_goods_list[$gid_skuid]) ){
+							//续签
+							
+							$new_need_goods_list[$gid_skuid]['goods_count'] += $goods_info['quantity'];
+							
+							if( isset($new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id]) )
+							{
+								$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id]['price'] = $goods_info['price'];
+								$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id]['total_price'] += $goods_info['total_price'];
+								$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id]['buy_quantity'] += $goods_info['buy_quantity'];
+								$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id]['total_quatity'] += $goods_info['total_quatity'];
+							}else{
+								
+								$new_need_goods_list[$gid_skuid]['head_goods_list'][$head_id] = array(
+																								'price' => $goods_info['price'],
+																								'total_price' => $goods_info['total_price'],
+																								'buy_quantity' => $goods_info['quantity'],
+																								'head_name' => $head_name,
+																								'total_quatity' => $goods_info['quantity']
+																							);
+							}
+							
+						}
+					}
+				}
+				
+			
+				
+				$lists_info = array(
+									'line1' => $list_info['head_name'],//团老大
+									'line2' => '团长：'.$list_info['head_name'].'     提货地址：'.$list_info['head_address'].'     联系电话：'.$list_info['head_mobile'],//团长：团老大啦     提货地址：湖南大剧院     联系电话：13000000000
+									'line3' => '配送单：'.$list_info['list_sn'].'     时间：'.date('Y-m-d H:i:s', $list_info['create_time']),
+									'line4' => '配送路线：'.$list_info['line_name'].'     配送员：'.$list_info['clerk_name'],
+								);
+				
+				
+				
+				
+				D('Seller/Excel')->export_delivery_list_pinew($new_need_goods_list, array('list_info' => $lists_info,'title' => '商品拣货单', 'columns' => $columns));
+				
+				//-------------------这里要合并结束----------------------
 			}
+			
+			
 			//导出配货单
 			if($gpc['export'] == 4)
 			{

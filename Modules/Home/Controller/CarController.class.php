@@ -582,7 +582,28 @@ class CarController extends CommonController {
 			
 			if( $mb_vip['card_id'] == 0 || ( $present_time > $mb_vip['card_end_time'] ) )
 			{
-				$json['code'] =6;
+				
+				$is_pop_vipmember_buytip = D('Home/Front')->get_config_by_name('is_pop_vipmember_buytip');
+				$is_open_vipcard_buy = D('Home/Front')->get_config_by_name('is_open_vipcard_buy');
+				$pop_vipmember_buyimage = D('Home/Front')->get_config_by_name('pop_vipmember_buyimage');
+				
+				$json['has_image'] = 0;
+				
+				$is_open_vipcard_buy = isset($is_open_vipcard_buy) ? $is_open_vipcard_buy : 0;
+				
+				if( isset($is_pop_vipmember_buytip) && $is_pop_vipmember_buytip ==1 )
+				{
+					if( isset($pop_vipmember_buyimage) && !empty($pop_vipmember_buyimage) )
+					{
+						$pop_vipmember_buyimage = tomedia($pop_vipmember_buyimage);
+						
+						$json['has_image'] = 1;
+						$json['pop_vipmember_buyimage'] = $pop_vipmember_buyimage;
+					}
+				}
+				$json['code'] =7;
+				
+				
 				$json['msg']='付费会员专享，普通会员不能购买';
 				echo json_encode($json);
 				die();
@@ -823,7 +844,7 @@ class CarController extends CommonController {
 			else if( !empty($data['buy_type']) && $data['buy_type'] == 'soitaire' )
 			{
 				//清理单独购买的商品
-				$format_data_array['is_just_addcar'] = 0;
+				$format_data_array['is_just_addcar'] = 1;
 				$format_data_array['singledel'] = 1;
 				
 		        $cart->addwecar($token,$goods_id,$format_data_array,$data['sku_str'],$data['community_id'],$car_prefix,$data['soli_id']);
@@ -1761,10 +1782,9 @@ class CarController extends CommonController {
 	
 	public function checkout()
 	{
-
-
-	    $gpc = I('request.');
-
+		$gpc = I('request.');
+		
+		
 	  $buy_type = isset($gpc['buy_type']) ? $gpc['buy_type'] : 'dan';
 	  
 	  $pintuan_model_buy = D('Home/Front')->get_config_by_name('pintuan_model_buy');
@@ -1835,7 +1855,8 @@ class CarController extends CommonController {
 			}
 		}
 
-
+			
+	
 	  if( empty($member_id) )
 	  {
 		  //需要登录
@@ -1845,7 +1866,8 @@ class CarController extends CommonController {
 	
 	$cart = D('Home/Car');
 	
-
+	
+	
 	if ((!$cart->has_goodswecar($buy_type,$token,$community_id) ) ) {
 		//购物车中没有商品
 		echo json_encode( array('code' =>4) );
@@ -1881,6 +1903,8 @@ class CarController extends CommonController {
 	}
 
 	if($address){
+		
+		
 		//get_area_info($id)
 		$province_info =  D('Home/Front')->get_area_info($address['province_id']);// M('area')->field('area_name')->where( array('area_id' => $address['province_id']) )->find();
 		$city_info = D('Home/Front')->get_area_info($address['city_id']);//M('area')->field('area_name')->where( array('area_id' => $address['city_id']) )->find();
@@ -2801,19 +2825,7 @@ class CarController extends CommonController {
 	//订阅消息begin
 	//  weprogram_use_templatetype
 	$weprogram_use_templatetype = D('Home/Front')->get_config_by_name('weprogram_use_templatetype');
-
-//	//TODO 模板消息 add to here 1.成功通知
-//    $toustid = '';//团长toustid
-//    $tmpid = D('Home/Front')->get_config_by_name('weprogram_subtemplate_pay_order');//
-//    $tmpInfo['data'] = [
-//        ['name4']['value'] => '',
-//        ['date3']['value'] => '2020-02-28 10:00:00',
-//        ['amount2']['value'] => '100.01',
-//        ['character_string1']['value'] => '123456789666',
-//        ['thing5']['value'] => '备注信息',
-//    ];
-//    D('Home/Car')->sendSubscribeMessage($toustid,$tmpid,$tmpInfo);//$toustid,$tmpid：weprogram_subtemplate_pay_order,array $info
-
+	
 	$is_need_subscript = 0;
 	$need_subscript_template = array();
 	
@@ -2897,7 +2909,6 @@ class CarController extends CommonController {
 
 public function sub_order()
 {
-
 	$gpc = I('request.');
 	
 	$token = $gpc['token'];

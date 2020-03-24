@@ -17,9 +17,9 @@ namespace Home\Controller;
 class IndexController extends CommonController {
     protected function _initialize()
     {
-		//var_dump(1111);die;
+		
     	parent::_initialize();
-       //return true
+       
     }
 	public function index_share()
 	{
@@ -419,7 +419,8 @@ class IndexController extends CommonController {
 		// 抢购时间显示
 		$index_qgtab_counttime 	= D('Home/Front')->get_config_by_name('index_qgtab_counttime');
 
-		
+		$hide_index_type = D('Home/Front')->get_config_by_name('hide_index_type');
+
 		echo json_encode(array('code'=>0,
 						'category_list' =>$category_list,
 						'spike_data' => array(),
@@ -473,7 +474,8 @@ class IndexController extends CommonController {
 						'ishow_index_gotop' => $ishow_index_gotop,
 						'ishow_index_pickup_time' => $ishow_index_pickup_time,
 						'index_video_arr' => $index_video_arr,
-						'index_qgtab_counttime' => $index_qgtab_counttime
+						'index_qgtab_counttime' => $index_qgtab_counttime,
+						'hide_index_type' => $hide_index_type
 					)
 			);
 		die();
@@ -1005,7 +1007,7 @@ class IndexController extends CommonController {
 		
 		$cate_info = '';
 		
-		if($gid == 'undefined' || $gid =='' || $gid =='null')
+		if($gid == 'undefined' || $gid =='' || $gid =='null'  || $gid ==0)
 		{
 			$gid = 0;
 		} else {

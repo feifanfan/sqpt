@@ -1035,7 +1035,7 @@ layui.use(['jquery', 'layer','form'], function(){
 									
 	$('#chose_label_id').click(function(){
 		cur_open_div = $(this).attr('data-input');
-		$.post("{:U('goods/labelquery', array('ok' => 1))}", {}, function(shtml){
+		$.post("{:U('group/labelquery', array('ok' => 1))}", {}, function(shtml){
 		 layer.open({
 			type: 1,
 			area: '930px',

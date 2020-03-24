@@ -718,50 +718,26 @@ $(function(){
                 });
                 $('#btnSubmitArea').unbind('click').click(function(){
 					var s_frist = $('.frist').val();
-					if(s_frist =='' || s_frist == 0)
-					{
-						layer.msg('请填写首重'); 
-						return false;
-					}
+					
 					
 					var s_frist_price = $('.frist_price').val();
-					if(s_frist_price =='' || s_frist_price == 0)
-					{
-						layer.msg('请填写首费'); 
-						return false;
-					}
+					
 					
 					var s_second = $('.second').val();
-					if(s_second =='' || s_second == 0)
-					{
-						layer.msg('请填写续重'); 
-						return false;
-					}
+					
                     $('.city:checked').each(function(){
                         citystrs += $(this).attr('city') + ";";
 						citystrs_codes += $(this).attr('code') + ";";
                     });
 					
 					var s_frist = $('.frist').val();
-					if(s_frist =='' || s_frist == 0)
-					{
-						layer.msg('请填写首重'); 
-						return false;
-					}
+					
 					
 					var s_frist_price = $('.frist_price').val();
-					if(s_frist_price =='' || s_frist_price == 0)
-					{
-						layer.msg('请填写首费'); 
-						return false;
-					}
+					
 					
 					var s_second = $('.second').val();
-					if(s_second =='' || s_second == 0)
-					{
-						layer.msg('请填写续重'); 
-						return false;
-					}
+					
 					
                     $('.' + current + ' .cityshtml').html(citystrs);
                     $('.' + current + ' .citys').val(citystrs);

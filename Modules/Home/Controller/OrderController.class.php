@@ -60,7 +60,7 @@ class OrderController extends CommonController {
 			echo json_encode( array('code' => 1, 'msg' => '订单不存在') );
 			die();
 		}
-		//TODO 重新写发订阅消息 edit by ff
+		
 		if( $order_info['order_status_id'] == 1)
 		{
 			$order_can_del_cancle = D('Home/Front')->get_config_by_name('order_can_del_cancle'); 
@@ -1525,6 +1525,18 @@ class OrderController extends CommonController {
 	        die();
 
 	    }
+		
+		//order_status_id == 3
+		if($order_info['order_status_id'] != 3)
+		{
+			$result['code'] = 1;	
+
+	        $result['msg'] = '订单可能已取消,请刷新页面';
+
+	        echo json_encode($result);
+
+	        die();
+		}
 
 		D('Home/Frontorder')->cancel_order($order_id);
 		
