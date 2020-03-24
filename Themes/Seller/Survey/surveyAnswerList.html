@@ -59,7 +59,7 @@
 
 <div class="layui-fluid">
     <div class="layui-card">
-        <div class="layui-card-header layui-elem-quote">当前位置：<span class="line-text">商品列表</span></div>
+        <div class="layui-card-header layui-elem-quote">当前位置：<span class="line-text">答案列表</span></div>
     </div>
     <table class="table table-responsive" lay-even lay-skin="line" lay-size="lg">
 
@@ -69,30 +69,16 @@
                 <input type='checkbox' name="checkall" lay-skin="primary" lay-filter="checkboxall"  />
             </th>
             <th style="width:80px;text-align:center;">ID</th>
-            <th style="width:200px;">主题名称</th>
-            <th style="">开始时间</th>
-            <th style="">结束时间</th>
-            <th style="">操作</th>
+            <th style="width:200px;">选项</th>
+            <th style="">图片</th>
         </tr>
         <foreach name="list" item="item">
-        <tr>
-            <td><input type='checkbox' name="item_checkbox" class="checkone" lay-skin="primary" value="{$item['id']}"/></td>
-            <td>{$item.id}</td>
-            <td>{$item.name}</td>
-            <td>{$item.starttime}</td>
-            <td>{$item.endtime}</td>
-            <td>
-                <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/editSurvey',array('topicid'=>$item[id]))}">
-                <i class='icow icow-shangjia2'></i> 编辑主题
-                </button>
-                <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/surveyQuestionList',array('topicid'=>$item[id]))}">
-                    <i class='icow icow-shangjia2'></i> 问题列表
-                </button>
-                <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/Statistics',array('topicid'=>$item[id]))}">
-                    <i class='icow icow-shangjia2'></i> 查看统计
-                </button>
-            </td>
-        </tr>
+            <tr>
+                <td><input type='checkbox' name="item_checkbox" class="checkone" lay-skin="primary" value="{$item['id']}"/></td>
+                <td>{$item.id}</td>
+                <td>{$item.answer_option}</td>
+                <td><img src="/Uploads/image/{$item.answer_image}"></td>
+            </tr>
         </foreach>
         </thead>
         <td colspan="5" style="text-align: right">

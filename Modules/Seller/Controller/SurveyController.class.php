@@ -55,10 +55,10 @@ class SurveyController extends CommonController
      * 添加问题
      */
     public function addSurveyQuestion(){
-        if(empty(I('get.topicid'))){
-            show_json(0, '未定义主题id');
-            die;
-        }
+//        if(empty(I('get.topicid'))){
+//            show_json(0, '未定义主题id');
+//            die;
+//        }
         if(IS_POST){
             $data = I('post.');
             foreach ($data['data'] as $item){
@@ -92,14 +92,30 @@ class SurveyController extends CommonController
      * 添加答案
      */
     public function addSurveyAnswer(){
+        if(IS_POST){
+            $questionid = I('get.questionid');
+            $answer['topicid'] = M('lionfish_comshop_survey_question')->where(['id'=>$questionid])->getField('topicid');
+            $data = I('post.');
 
+            foreach ($data['data'] as $key=>$item){
+                $answer['questionid'] = I('get.questionid');
+                $answer['answer_option'] = $item['answer_option'];
+                $answer['answer_image'] = $data['thumbs'][$key];
+                M('lionfish_comshop_survey_answer')->add($answer);
+            }
+            show_json(1,array('url' => '/seller.php?s=/Survey/surveyAnswerList/questionid/'.$questionid));
+        }
+        $this->display();
     }
 
     /**
      * 答案列表
      */
     public function surveyAnswerList(){
-
+        $questionid = I('get.questionid');
+        $list = M('lionfish_comshop_survey_answer')->where(['questionid'=>$questionid])->select();
+        $this->assign('list',$list);
+        $this->display();
     }
 
     /**
@@ -107,5 +123,14 @@ class SurveyController extends CommonController
      */
     public function editSurveyAnswer(){
 
+    }
+
+    /**
+     * @description：查看数据统计
+     * @date:2020/3/24
+     * @author ff
+     */
+    public function statistics(){
+        $this->display();
     }
 }

@@ -68,14 +68,23 @@
             <th style="width:25px;">
                 <input type='checkbox' name="checkall" lay-skin="primary" lay-filter="checkboxall"  />
             </th>
-            <th style="width:80px;text-align:center;">ID</th>
+            <th style="width: 100px;">ID</th>
             <th style="width:200px;">问题</th>
+            <th style="width:200px;">操作</th>
         </tr>
         <foreach name="list" item="item">
             <tr>
                 <td><input type='checkbox' name="item_checkbox" class="checkone" lay-skin="primary" value="{$item['id']}"/></td>
                 <td>{$item.id}</td>
-                <td>{$item.name}</td>
+                <td>{$item.question}</td>
+                <td>
+                    <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/surveyAnswerList',array('questionid'=>$item[id]))}">
+                        <i class='icow icow-shangjia2'></i> 答案列表
+                    </button>
+                    <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/addSurveyAnswer',array('questionid'=>$item[id]))}">
+                        <i class='icow icow-shangjia2'></i> 添加答案
+                    </button>
+                </td>
             </tr>
         </foreach>
         </thead>
@@ -83,5 +92,14 @@
             {$pager}
         </td>
     </table>
+    <script>
+        $('.btn-operation').click(function() {
+            var ids_arr = [];
+            var obj = $(this);
+            var s_toggle = $(this).attr('data-toggle');
+            var s_url = $(this).attr('data-href');
+            location.href = s_url;
+        });
+    </script>
 </div>
 </body>
