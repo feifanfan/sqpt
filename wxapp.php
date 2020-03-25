@@ -7,10 +7,10 @@
     define('APP_PATH','./Modules/');
     $wx_controller = $_REQUEST['controller'];
     $wx_controller_arr = explode('.',$wx_controller);
+    
     if (!isset($wx_controller_arr[1])){
         $wx_controller_arr[1]='index';
     }
-    var_dump(11);
     unset($_GET['i']);
     unset($_GET['t']);
     unset($_GET['v']);
