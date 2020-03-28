@@ -56,6 +56,11 @@ class SurveyController extends CommonController
             $data[]= ['questionid'=>substr($itemx[0],15,-6),
                        'answerid'=>substr($itemx[1],6,-6)];
         }
-        
+
+        foreach ($data as $item){
+            $need['ques']
+            M('oscshop_lionfish_comshop_survey_user_answer')->add($need);
+        }
+
     }
 }
