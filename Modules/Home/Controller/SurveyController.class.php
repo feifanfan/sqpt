@@ -33,6 +33,7 @@ class SurveyController extends CommonController
             echo json_encode(array('code'=>0));
             die;
         }
+        $question['topicName'] = $topic['name'];
         echo json_encode(array('code'=>1,'data'=>$question));
     }
 
