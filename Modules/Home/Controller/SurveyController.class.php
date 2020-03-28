@@ -43,8 +43,19 @@ class SurveyController extends CommonController
      * @author ff
      */
     public function commit(){
-        $data = I('get.member_id');
+        $member_id = I('request.member_id');
+        $questionStr =I('request.data');
+        $questionStr = str_replace("\"",'',$questionStr);
+        $questionStr=str_replace('{','',$questionStr);
+        $questionStr = str_replace('}','',$questionStr);
 
-        echo json_encode($data);die;
+        $questionArr = explode(',',$questionStr);
+        $data =[];
+        foreach ($questionArr as $item){
+           $itemx =  explode(':',$item);
+            $data[]= ['questionid'=>substr($itemx[0],15,-6),
+                       'answerid'=>substr($itemx[1],6,-6)];
+        }
+        
     }
 }
