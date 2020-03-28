@@ -43,7 +43,7 @@ class SurveyController extends CommonController
      * @author ff
      */
     public function commit(){
-        $data = I('get.');
+        $data = I('get.member_id');
 
         echo json_encode($data);die;
     }
