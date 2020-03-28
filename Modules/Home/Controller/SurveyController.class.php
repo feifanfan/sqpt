@@ -15,7 +15,7 @@ class SurveyController extends CommonController
      * @author ff
      */
     public function getSurvey(){
-        $uid = I('get.uid');
+        $uid = 1;
         $where['flag'] = 1;
         $where['starttime'] = array('LT',date('Y-m-d H:i:s',time()));
         $where['endtime'] = array('GT',date('Y-m-d H:i:s',time()));
@@ -27,7 +27,7 @@ class SurveyController extends CommonController
         }
         $question = M('lionfish_comshop_survey_question')->where(['topicid'=>$topic['id']])->field(['id','question'])->select();
         foreach ($question as $key=>&$item){
-            $question[$key]['answer'] = M('lionfish_comshop_survey_answer')->where(['topicid'=>$topic['id'],'questionid'=>$item['id']])->order('id')->field(['answer_option','answer_image'])->select();
+            $question[$key]['answer'] = M('lionfish_comshop_survey_answer')->where(['topicid'=>$topic['id'],'questionid'=>$item['id']])->order('id')->field(['id as answer_id','answer_option','answer_image'])->select();
         }
         if(empty($question)){
             echo json_encode(array('code'=>0));
