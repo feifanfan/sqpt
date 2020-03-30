@@ -15,7 +15,7 @@ class SurveyController extends CommonController
      * @author ff
      */
     public function getSurvey(){
-        $uid = 1;
+        $uid = I('request.member_id');
         $where['flag'] = 1;
         $where['starttime'] = array('LT',date('Y-m-d H:i:s',time()));
         $where['endtime'] = array('GT',date('Y-m-d H:i:s',time()));
