@@ -53,14 +53,22 @@ class SurveyController extends CommonController
         $data =[];
         foreach ($questionArr as $item){
            $itemx =  explode(':',$item);
+           if(empty(substr($itemx[0],15,-6))){continue;}
             $data[]= ['questionid'=>substr($itemx[0],15,-6),
                        'answerid'=>substr($itemx[1],6,-6)];
         }
-
-        foreach ($data as $item){
-            $need['ques']
-            M('oscshop_lionfish_comshop_survey_user_answer')->add($need);
+        $need = [];
+        if(!empty($data)){
+            $topicid = M('lionfish_comshop_survey_question')->where(['id'=>$data[0]['questionid']])->getField('topicid');
+            foreach ($data as $item){
+                $need['questionid'] = $item['questionid'];
+                $need['answerid'] = $item['answerid'];
+                $need['uid'] = $member_id;
+                $need['topicid'] = $topicid;
+                M('lionfish_comshop_survey_user_answer')->add($need);
+            }
         }
 
+        echo json_encode(array('code'=>1,'message'=>'提交成功'));die;
     }
 }
