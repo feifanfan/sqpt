@@ -136,55 +136,133 @@ class WxPayApi
 		return $result;
 	}
 
-	
-	/**
-		发送红包接口
-	**/
-	public static function bonuspay($inputObj, $timeOut = 6)
-	{
-		$url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
-		$param = array();
-		
-		$param['mch_billno'] = $inputObj['mch_billno'];
-		$param['mch_id'] = WxPayConfig::MCHID;
-		$param['wxappid'] = WxPayConfig::APPID;
-		$param['nick_name'] = $inputObj['nick_name'];// urlencode($inputObj['nick_name']);//$inputObj['nick_name'];
-		$param['send_name'] = $inputObj['nick_name'];//urlencode($inputObj['nick_name']);//$inputObj['send_name'];
-		$param['re_openid'] = $inputObj['openid'];
-		$param['total_amount'] = $inputObj['total_amount'];
-		$param['min_value'] = $inputObj['total_amount'];
-		$param['max_value'] = $inputObj['total_amount'];		
-		$param['total_num'] = 1;	
-		$param['wishing'] = '恭喜发财';//urlencode('恭喜发财');//'恭喜发财';
-		$param['client_ip'] = $_SERVER['REMOTE_ADDR'];
-		$param['act_name'] =  '组团成功';//urlencode('组团成功');//'组团成功';
-		//$param['act_id'] = '';
-		$param['remark'] = '团长红包';//urlencode('团长红包');//'团长红包';
-		$param['nonce_str'] = self::getNonceStr();
-		$param['sign'] = self::MakeSignfh($param);
-		
-		$xml = self::arrdatetoxml($param);
-		//$xml = iconv("UTF-8", "ISO8859-1", $xml);
-		
-		$startTimeStamp = self::getMillisecond();//请求开始时间
-		//var_dump($startTimeStamp);die(); ISO8859-1
-		$response = self::postXmlCurl($xml, $url, true, $timeOut);
-		
-		libxml_disable_entity_loader(true);
-        $result = json_decode(json_encode(simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA)), true);	
-		$res_data = array();
-		if($result['return_code']=='SUCCESS')
-		{
-			$res_data['ret'] = 1;
-			$res_data['mes'] = $result['return_msg'];
-		} else {
-			$res_data['ret'] = 0;
-			$res_data['mes'] = $result['return_msg'];
-		}
-		
-		return $res_data;
-	}
-	
+
+    /**
+    发送红包接口
+     **/
+    public static function bonuspay($inputObj, $timeOut = 6)
+    {
+        $url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
+        $param = array();
+        $wepro_appid = D('Home/Front')->get_config_by_name('wepro_appid');
+        $mchid = D('Home/Front')->get_config_by_name('wepro_partnerid');
+        $wepro_key = D('Home/Front')->get_config_by_name('wepro_key');
+        $param['mch_billno'] = '202011111111';//$inputObj['mch_billno'];
+        $param['mch_id'] = '1557285951';
+        $param['wxappid'] = 'wx3e61c766591c284e';
+        // $param['nick_name'] = $inputObj['nick_name'];// urlencode($inputObj['nick_name']);//$inputObj['nick_name'];
+        $param['send_name'] = 1;//$inputObj['send_name'];//urlencode($inputObj['nick_name']);//$inputObj['send_name'];
+        $param['re_openid'] = $inputObj['openid'];
+        $param['total_amount'] = 101;//$inputObj['total_amount'];
+        $param['total_num'] = 1;
+        $param['wishing'] = 2;//urlencode('恭喜发财');//'恭喜发财';
+        $param['client_ip'] = $_SERVER['REMOTE_ADDR'];
+        $param['act_name'] =  3;//urlencode('组团成功');//'组团成功';
+        //$param['act_id'] = '';
+        $param['remark'] = 4;//urlencode('团长红包');//'团长红包';
+        $param['nonce_str'] = self::getNonceStr();
+        $param['sign'] = self::MakeSignfh($param);
+
+        $xml = self::arrdatetoxml($param);
+        // $xml = iconv("UTF-8", "ISO8859-1", $xml);
+
+        $startTimeStamp = self::getMillisecond();//请求开始时间
+        //var_dump($startTimeStamp);die(); ISO8859-1
+        $response = self::postXmlCurl($xml, $url, true, $timeOut);
+
+        libxml_disable_entity_loader(true);
+        $result = json_decode(json_encode(simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $res_data = array();
+        if($result['return_code']=='SUCCESS')
+        {
+            $res_data['ret'] = 1;
+            $res_data['mes'] = $result['return_msg'];
+        } else {
+            $res_data['ret'] = 0;
+            $res_data['mes'] = $result['return_msg'];
+        }
+
+        return $res_data;
+    }
+    public static function sendMiniRedPack($inputObj, $timeOut = 6)
+    {
+        $url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendminiprogramhb";
+        $param = array();
+        $wepro_appid = D('Home/Front')->get_config_by_name('wepro_appid');
+        $mchid = D('Home/Front')->get_config_by_name('wepro_partnerid');
+
+        $param['mch_billno'] = '20005225s0000000';//$inputObj['mch_billno'];
+        $param['mch_id'] = $mchid;
+        $param['wxappid'] = $wepro_appid;
+        // $param['nick_name'] = $inputObj['nick_name'];// urlencode($inputObj['nick_name']);//$inputObj['nick_name'];
+        $param['send_name'] = 1;//$inputObj['send_name'];//urlencode($inputObj['nick_name']);//$inputObj['send_name'];
+        $param['re_openid'] = $inputObj['openid'];
+        $param['total_amount'] = $inputObj['total_amount'];
+        $param['total_num'] = 1;
+        $param['wishing'] = 2;//urlencode('恭喜发财');//'恭喜发财';
+        $param['client_ip'] = $_SERVER['REMOTE_ADDR'];
+        $param['act_name'] =  3;//urlencode('组团成功');//'组团成功';
+        //$param['act_id'] = '';
+        $param['remark'] = 4;//urlencode('团长红包');//'团长红包';
+        $param['notify_way'] = 'MINI_PROGRAM_JSAPI';
+        $param['nonce_str'] = self::getNonceStr();
+        $param['sign'] = self::MakeSignfh($param);
+
+        $xml = self::arrdatetoxml($param);
+
+        // $xml = iconv("UTF-8", "ISO8859-1", $xml);
+
+        $startTimeStamp = self::getMillisecond();//请求开始时间
+        //var_dump($startTimeStamp);die(); ISO8859-1
+        $response = self::postXmlCurl($xml, $url, true, $timeOut);
+
+        libxml_disable_entity_loader(true);
+        $result = json_decode(json_encode(simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $res_data = array();
+        if($result['return_code']=='SUCCESS')
+        {
+            $res_data['ret'] = 1;
+            $res_data['mes'] = $result['return_msg'];
+        } else {
+            $res_data['ret'] = 0;
+            $res_data['mes'] = $result['return_msg'];
+        }
+
+        return $res_data;
+    }
+    public function getMiniRedPackLog(){
+        $url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/gethbinfo";
+        $param = array();
+        $wepro_appid = D('Home/Front')->get_config_by_name('wepro_appid');
+        $mchid = D('Home/Front')->get_config_by_name('wepro_partnerid');
+        $param['nonce_str'] = self::getNonceStr();
+        $param['sign'] = self::MakeSignfh($param);
+        $param['mch_billno'] = '20005225s0000000';
+        $param['mch_id'] = $mchid;
+        $param['appid'] = $wepro_appid;
+        $param['bill_type'] = 'MCHT';
+//        var_dump($param);
+        $xml = self::arrdatetoxml($param);
+        // $xml = iconv("UTF-8", "ISO8859-1", $xml);
+        $startTimeStamp = self::getMillisecond();//请求开始时间
+        //var_dump($startTimeStamp);die(); ISO8859-1
+        $response = self::postXmlCurl($xml, $url, true, 0);
+
+        libxml_disable_entity_loader(true);
+        $result = json_decode(json_encode(simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $res_data = array();
+        if($result['return_code']=='SUCCESS')
+        {
+            $res_data['ret'] = 1;
+            $res_data['mes'] = $result['return_msg'];
+        } else {
+            $res_data['ret'] = 0;
+            $res_data['mes'] = $result['return_msg'];
+        }
+
+        return $res_data;
+    }
+
 	public static  function arrdatetoxml($values)
 	{
 		$xml = "<xml>";
