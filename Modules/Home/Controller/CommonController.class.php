@@ -17,7 +17,6 @@ class CommonController extends Controller{
 	
      /* 初始化,权限控制,菜单显示 */
      protected function _initialize(){
-		
 		/* 读取数据库中的配置 */
         $config =   S('DB_CONFIG_DATA');		
         if(!$config){
