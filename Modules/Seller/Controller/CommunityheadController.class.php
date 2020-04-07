@@ -2625,9 +2625,20 @@ class CommunityheadController extends CommonController {
 		$model=new BlogModel();  
 		$return=$model->del_blog(I('get.id'));			
 		$this->osc_alert($return); 	
-	}	
-	
-	
-	
+	}
+
+    /**
+     * @description：发红包
+     * @date:2020/4/7
+     * @author ff
+     */
+	public function sendRedPack(){
+        $lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
+        require_once $lib_path."/Weixin/lib/WxPay.Api.php";
+        $inputObj = [];
+        $res = \WxPayApi::bonuspay($inputObj);
+        show_json(0,array('data'=>$res));
+    }
+
 }
 ?>
