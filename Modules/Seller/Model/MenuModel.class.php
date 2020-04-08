@@ -670,7 +670,7 @@ class MenuModel{
                         'route' => 'survey/surveyList',
                         'items' => array(
                             array('title' => '添加投票', 'route' => 'survey/addSurvey', 'desc' => ''),
-//                            array('title' => '会员权益', 'route' => 'vipcard/equity', 'desc' => ''),
+                            array('title' => '主题列表', 'route' => 'survey/surveyList', 'desc' => ''),
 //                            array('title' => '购买会员订单', 'route' => 'vipcard/order', 'desc' => ''),
 //                            array('title' => '会员卡设置', 'route' => 'vipcard/config', 'desc' => ''),
                         )
