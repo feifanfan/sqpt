@@ -55,10 +55,10 @@ class SurveyController extends CommonController
      * 添加问题
      */
     public function addSurveyQuestion(){
-//        if(empty(I('get.topicid'))){
-//            show_json(0, '未定义主题id');
-//            die;
-//        }
+        if(empty(I('get.topicid'))){
+            show_json(0, '未定义主题id');
+            die;
+        }
         if(IS_POST){
             $data = I('post.');
             foreach ($data['data'] as $item){
@@ -68,6 +68,7 @@ class SurveyController extends CommonController
             }
             show_json(1,array('url' => '/seller.php?s=/Survey/addSurveyQuestion/list'));
         }
+        $this->assign('topicid',I('get.topicid'));
         $this->display();
     }
 
@@ -77,6 +78,7 @@ class SurveyController extends CommonController
     public function surveyQuestionList(){
         $topicid = I('get.topicid');
         $list = M('lionfish_comshop_survey_question')->where(['topicid'=>$topicid])->select();
+        $this->assign('topicid',$topicid);
         $this->assign('list',$list);
         $this->display();
     }
@@ -87,7 +89,11 @@ class SurveyController extends CommonController
     public function editSurveyQuestion(){
 
     }
-
+    public function delSurveyQuestion(){
+        $questionid = I('get.questionid');
+        M('lionfish_comshop_survey_question')->where(['id'=>$questionid])->delete();
+        show_json(1,array('url' => '/seller.php?s=/Survey/surveyQuestionList/questionid/'.$questionid));
+    }
     /**
      * 添加答案
      */

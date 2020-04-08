@@ -59,10 +59,14 @@
 
 <div class="layui-fluid">
     <div class="layui-card">
-        <div class="layui-card-header layui-elem-quote">当前位置：<span class="line-text">商品列表</span></div>
+        <div class="layui-card-header layui-elem-quote">当前位置：<span class="line-text">问题列表</span></div>
     </div>
     <table class="table table-responsive" lay-even lay-skin="line" lay-size="lg">
-
+        <div class="page-table-header">
+              <span class="pull-right">
+                <a href="/seller.php?s=/survey/addSurveyQuestion/topicid/{$topicid}" class="layui-btn layui-btn-sm"><i class="fa fa-plus"></i> 添加问题</a>
+              </span>
+        </div>
         <thead>
         <tr>
             <th style="width:25px;">
@@ -83,6 +87,9 @@
                     </button>
                     <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/addSurveyAnswer',array('questionid'=>$item[id]))}">
                         <i class='icow icow-shangjia2'></i> 添加答案
+                    </button>
+                    <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch' data-href="{:U('Survey/delSurveyQuestion',array('questionid'=>$item[id]))}">
+                        <i class='icow icow-shangjia2'></i> 删除问题
                     </button>
                 </td>
             </tr>
