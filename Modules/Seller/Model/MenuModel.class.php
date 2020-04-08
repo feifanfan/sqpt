@@ -665,6 +665,16 @@ class MenuModel{
 								array('title' => '会员卡设置', 'route' => 'vipcard/config', 'desc' => ''),
 							)
 						),
+                    array(
+                        'title' => '投票',
+                        'route' => 'survey/surveyList',
+                        'items' => array(
+                            array('title' => '添加投票', 'route' => 'survey/addSurvey', 'desc' => ''),
+//                            array('title' => '会员权益', 'route' => 'vipcard/equity', 'desc' => ''),
+//                            array('title' => '购买会员订单', 'route' => 'vipcard/order', 'desc' => ''),
+//                            array('title' => '会员卡设置', 'route' => 'vipcard/config', 'desc' => ''),
+                        )
+                    ),
 					)
 			),
 			'delivery'  => array(
