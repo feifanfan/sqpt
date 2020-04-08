@@ -2626,23 +2626,40 @@ class CommunityheadController extends CommonController {
 		$return=$model->del_blog(I('get.id'));			
 		$this->osc_alert($return); 	
 	}
-
-    /**
-     * @description：发红包
-     * @date:2020/4/7
-     * @author ff
-     */
-	public function sendRedPack(){
+    public function sendRedPack(){
         $lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
         require_once $lib_path."/Weixin/lib/WxPay.Api.php";
         $inputObj = [];
         $inputObj['openid'] = 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q';
         $inputObj['mch_billno'] = date(Ymd).random(6,true);
-        $inputObj['send_name'] = D('Home/Front')->get_config_by_name('shoname');
-        $inputObj['total_amount'] = rand(100,200)/100;
+        $inputObj['send_name'] = 'aaa';//D('Home/Front')->get_config_by_name('shoname').'发红包';
+        $inputObj['total_amount'] = rand(1000,3000)/1000;
+        //var_dump($inputObj);die;
         $res = \WxPayApi::bonuspay($inputObj);
         show_json(0,array('data'=>$res));
     }
-
+    public function sendMiniRedPack(){
+        $lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
+        require_once $lib_path."/Weixin/lib/WxPay.Api.php";
+        $inputObj = [];
+        $inputObj['openid'] = 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q';
+        $inputObj['mch_billno'] = date(Ymd).random(6,true);
+        $inputObj['send_name'] = 'aaa';//D('Home/Front')->get_config_by_name('shoname').'发红包';
+        $inputObj['total_amount'] = rand(100,300);
+        $res = \WxPayApi::sendMiniRedPack($inputObj);
+        show_json(0,array('data'=>$res));
+    }
+    public function getMiniRedPackLog(){
+        $lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
+        require_once $lib_path."/Weixin/lib/WxPay.Api.php";
+        $inputObj = [];
+        $inputObj['openid'] = 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q';
+        $inputObj['mch_billno'] = date(Ymd).random(6,true);
+        $inputObj['send_name'] = 'aaa';//D('Home/Front')->get_config_by_name('shoname').'发红包';
+        $inputObj['total_amount'] = rand(100,300);
+        $res = \WxPayApi::getMiniRedPackLog($inputObj);
+        show_json(0,array('data'=>$res));
+    }
+	
 }
 ?>
