@@ -144,12 +144,18 @@ class WxPayApi
 	{
 		$url = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 		$param = array();
-		
+        $wepro_appid = D('Home/Front')->get_config_by_name('wepro_appid');
+
+
+
+        $mchid = D('Home/Front')->get_config_by_name('wepro_partnerid');
+
+        $wepro_key = D('Home/Front')->get_config_by_name('wepro_key');
 		$param['mch_billno'] = $inputObj['mch_billno'];
-		$param['mch_id'] = WxPayConfig::MCHID;
-		$param['wxappid'] = WxPayConfig::APPID;
+		$param['mch_id'] = $mchid;
+		$param['wxappid'] = $wepro_appid;
 		$param['nick_name'] = $inputObj['nick_name'];// urlencode($inputObj['nick_name']);//$inputObj['nick_name'];
-		$param['send_name'] = $inputObj['nick_name'];//urlencode($inputObj['nick_name']);//$inputObj['send_name'];
+		$param['send_name'] = $inputObj['send_name'];//urlencode($inputObj['nick_name']);//$inputObj['send_name'];
 		$param['re_openid'] = $inputObj['openid'];
 		$param['total_amount'] = $inputObj['total_amount'];
 		$param['min_value'] = $inputObj['total_amount'];
@@ -162,7 +168,6 @@ class WxPayApi
 		$param['remark'] = '团长红包';//urlencode('团长红包');//'团长红包';
 		$param['nonce_str'] = self::getNonceStr();
 		$param['sign'] = self::MakeSignfh($param);
-		
 		$xml = self::arrdatetoxml($param);
 		//$xml = iconv("UTF-8", "ISO8859-1", $xml);
 		

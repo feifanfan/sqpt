@@ -2636,6 +2636,10 @@ class CommunityheadController extends CommonController {
         $lib_path = dirname(dirname( dirname(__FILE__) )).'/Lib/';
         require_once $lib_path."/Weixin/lib/WxPay.Api.php";
         $inputObj = [];
+        $inputObj['openid'] = 'o5DQ_5X-jEk69jJS4uULGEW3eN8Q';
+        $inputObj['mch_billno'] = date(Ymd).random(6,true);
+        $inputObj['send_name'] = D('Home/Front')->get_config_by_name('shoname');
+        $inputObj['total_amount'] = rand(100,200)/100;
         $res = \WxPayApi::bonuspay($inputObj);
         show_json(0,array('data'=>$res));
     }
