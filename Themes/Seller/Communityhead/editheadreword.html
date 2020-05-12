@@ -1,0 +1,87 @@
+<form action="<?php if( empty($reward['id'])){ ?>{:U('communityhead/addReward')}<?php  }else{  ?>{:U('communityhead/editreward')}<?php } ?>" method="post"  class="form-horizontal form-validate" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{$reward['id']}" />
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title"><?php if( !empty($reward['id'])){ ?>编辑<?php  }else{  ?>添加<?php } ?>团长激励计划</h4>
+            </div>
+
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label must">超出金额</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <div class='input-group'>
+                            <input type="number" name="amount" class="form-control" value="{$reward['amount']}" data-rule-required='true'/>
+                            <div class='input-group-addon'>元</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">团长提成比例</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <div class='input-group'>
+                            <input type="text" name="percent" class="form-control" value="{$reward['percent']}" />
+                            <div class='input-group-addon'>%</div>
+                        </div>
+
+                    </div>
+                </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">提交</button>
+        <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+    </div>
+    </div>
+</form>
+
+<script>
+
+    $(function(){
+        $('input[name=auto_upgrade]').click(function(){
+            var s_val = $(this).val();
+            if(s_val == 0)
+            {
+                $('#auto_condition').hide();
+                $('#condition_one').hide();
+                $('#condition_two').hide();
+
+            }else{
+                $('#auto_condition').show();
+                var sc_val = $('input[name=condition_type]:checked').val();
+                if(sc_val == 0)
+                {
+                    $('#condition_one').show();
+                    $('#condition_two').hide();
+                }else{
+                    $('#condition_one').hide();
+                    $('#condition_two').show();
+                }
+
+            }
+        })
+
+        $('input[name=condition_type]').click(function(){
+
+            var s_val = $(this).val();
+            if(s_val == 0)
+            {
+                $('#condition_one').show();
+                $('#condition_two').hide();
+            }else{
+                $('#condition_one').hide();
+                $('#condition_two').show();
+            }
+
+        })
+
+    })
+
+
+
+</script>

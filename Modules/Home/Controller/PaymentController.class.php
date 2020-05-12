@@ -200,7 +200,7 @@ class PaymentController extends CommonController {
 		$input->SetGoods_tag("");
 		
 		$notify_url = C('SITE_URL').'notify.php';
-		
+		file_put_contents('pament.txt',$notify_url);
 		$input->SetNotify_url($notify_url);
 		
 		$input->SetTrade_type("JSAPI");
