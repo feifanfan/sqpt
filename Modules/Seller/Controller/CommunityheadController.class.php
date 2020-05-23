@@ -2731,7 +2731,7 @@ class CommunityheadController extends CommonController {
         $total = M('lionfish_community_head')->count();
         $this->level = $this->getjjlist();
         $this->jililist = $this->getjililist();
-
+        var_dump("<pre>");
         //2.统计每个团长的业绩
         foreach ($heads as $k=>&$v){
             //团长业绩、原提成、原提成比例
@@ -2739,13 +2739,21 @@ class CommunityheadController extends CommonController {
             foreach ($this->jililist as $jilik => $jiliv){
                 if($jiliv['amount']<$v['money']['total']){
                     $v['money']['jlpercent'] = $jiliv['percent'];
-
                 }
             }
             if(!isset($v['money']['jlpercent'])){
                 $v['money']['jlpercent'] = 0;
             }
+            $v['money']['jltotal'] = $v['money']['jlpercent']*$v['money']['total']/100;
+            var_dump('总营业额：'.$v['money']['total']);
+            var_dump('原提成比例：'.$v['money']['percent']);
+            var_dump('原提成金额：'.$v['money']['money']);
+            var_dump('激励奖金比例：'.$v['money']['jlpercent']);
+            var_dump('激励奖金金额：'.$v['money']['jltotal']);
+            echo "<br>";
         }
+
+
 
         $pager = pagination2($total, $pindex, $psize);
 
@@ -2759,9 +2767,9 @@ class CommunityheadController extends CommonController {
         $result = M()->query($sql)[0];
 
         //业绩
-        $result['total'] = number_format($result['total'],2);
+        $result['total'] = number_format($result['total'],2,".","");
         //原提成
-        $result['money'] = number_format($result['money'],2);
+        $result['money'] = number_format($result['money'],2,".","");
         //团长原提成比例
         $result['percent'] = $this->level[$level];
 

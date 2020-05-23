@@ -20,7 +20,7 @@ class SystemController extends \Think\Controller {
         parent::__construct();
     }
 
-    public function upgrade_check()
+    public function upgrade_checkbak()
     {
 
         //get_config_by_name($name) ret.status

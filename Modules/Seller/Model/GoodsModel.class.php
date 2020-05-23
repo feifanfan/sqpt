@@ -64,7 +64,6 @@ class GoodsModel extends Model{
 	{
 		$post_data = array();
 		$post_data_goods = array();
-		var_dump(I('post.'));die;
 		$post_data_goods['goodsname'] = I('post.goodsname','','trim');
 		$post_data_goods['subtitle'] = I('post.subtitle','','trim');
 		$post_data_goods['grounding'] = I('post.grounding');
