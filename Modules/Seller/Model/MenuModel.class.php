@@ -536,7 +536,8 @@ class MenuModel{
 						'items' => array(
 							 array('title' => '提现列表', 'route' => 'communityhead/distribulist', 'desc' => ''),
 							array('title' => '提现设置', 'route' => 'communityhead/distributionpostal', 'desc' => ''),
-						   
+                            array('title' => '团长激励奖金列表', 'route' => 'communityhead/rewordheadlist', 'desc' => ''),
+                            array('title' => '激励计划', 'route' => 'communityhead/rewardList', 'desc' => ''),
 							)
 						),
 					

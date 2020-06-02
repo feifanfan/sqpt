@@ -133,7 +133,7 @@
                     <div class="col-md-12">
                         <div class="page-table-header">
 							<span class="pull-right">
-								<a  href="javascript:;" data-href="{:U('communityhead/addreward' , array('ok' => 1))}" class="layui-btn layui-btn-sm ajaxModal"><i class="fa fa-plus"></i> 添加新激励计划</a>
+								<a  href="{:U('communityhead/rewardList' , array('ok' => 1))}" class="layui-btn layui-btn-sm ajaxModal"><i class="fa fa-plus"></i> 添加新激励计划</a>
 
 							</span>
 
@@ -143,6 +143,11 @@
                             <tr>
                                 <th style='width:160px;'>团长</th>
                                 <th style='width:160px;'>小区</th>
+                                <th style='width:160px;'>总营业额</th>
+                                <th style='width:160px;'>原提成比例</th>
+                                <th style='width:160px;'>原提成金额</th>
+                                <th style='width:160px;'>激励奖金比例</th>
+                                <th style='width:160px;'>激励奖金比例</th>
                                 <th style='width:160px;'>操作</th>
 
                             </tr>
@@ -153,6 +158,11 @@
                             <tr>
                                 <td>{$item.head_name}</td>
                                 <td>{$item.community_name}</td>
+                                <td>{$item['money']['total']}</td>
+                                <td>{$item['money']['percent']}</td>
+                                <td>{$item['money']['money']}</td>
+                                <td>{$item['money']['jlpercent']}</td>
+                                <td>{$item['money']['jltotal']}</td>
                                 <td>
                                     <a  class='layui-btn layui-btn-xs ajaxModal' href="javascript:;" data-href="{:U('communityhead/editreward', array('id' => $item['id']))}"  >
                                         <i class="layui-icon layui-icon-edit"></i>编辑

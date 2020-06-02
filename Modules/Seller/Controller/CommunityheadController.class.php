@@ -2716,7 +2716,7 @@ class CommunityheadController extends CommonController {
      * @author ff
      */
     public function rewordheadlist(){
-        $starttime_arr = I('get.time');
+        $starttime_arr = I('request.time');
         $pindex = I('get.page',1);
         $psize = 20;
         $starttime = isset($starttime_arr['start']) ? strtotime($starttime_arr['start']) : strtotime(date('Y-m-d'.' 00:00:00'));
@@ -2729,9 +2729,9 @@ class CommunityheadController extends CommonController {
         //1.查询团长
         $heads = M('lionfish_community_head')->limit($pindex-1,$psize)->field(['id','member_id','community_name','head_name','head_mobile','level_id'])->select();
         $total = M('lionfish_community_head')->count();
-        $this->level = $this->getjjlist();
-        $this->jililist = $this->getjililist();
-        var_dump("<pre>");
+        $this->level = $this->getjjlist();//获取团长等级列表
+        $this->jililist = $this->getjililist();//获取激励计划列表，按照超过金额排序
+//        var_dump("<pre>");
         //2.统计每个团长的业绩
         foreach ($heads as $k=>&$v){
             //团长业绩、原提成、原提成比例
@@ -2745,12 +2745,12 @@ class CommunityheadController extends CommonController {
                 $v['money']['jlpercent'] = 0;
             }
             $v['money']['jltotal'] = $v['money']['jlpercent']*$v['money']['total']/100;
-            var_dump('总营业额：'.$v['money']['total']);
-            var_dump('原提成比例：'.$v['money']['percent']);
-            var_dump('原提成金额：'.$v['money']['money']);
-            var_dump('激励奖金比例：'.$v['money']['jlpercent']);
-            var_dump('激励奖金金额：'.$v['money']['jltotal']);
-            echo "<br>";
+//            var_dump('总营业额：'.$v['money']['total']);
+//            var_dump('原提成比例：'.$v['money']['percent']);
+//            var_dump('原提成金额：'.$v['money']['money']);
+//            var_dump('激励奖金比例：'.$v['money']['jlpercent']);
+//            var_dump('激励奖金金额：'.$v['money']['jltotal']);
+//            echo "<br>";
         }
 
 
@@ -2759,11 +2759,14 @@ class CommunityheadController extends CommonController {
 
 		$this->pager = $pager;
 		$this->assign('list',$heads);
+//		$this->assign('');
         $this->display();
     }
 
     private function getheadmoney($head_id,$level,array $time){
-        $sql = "SELECT SUM(money/bili*100) as total,sum(money) as money  FROM ".C('DB_PREFIX')."lionfish_community_head_commiss_order WHERE head_id=$head_id";
+        $sql = "SELECT SUM(c.money/c.bili*100) as total,sum(c.money) as money  FROM ".C('DB_PREFIX')."lionfish_community_head_commiss_order as c left join 
+        ".C('DB_PREFIX')."lionfish_comshop_order as o ON c.order_id=o.order_id WHERE c.head_id=$head_id and o.pay_time>".$time[0]." and o.pay_time<".$time[1]." and ISNULL(o.canceltime)";
+//        var_dump($sql);die;
         $result = M()->query($sql)[0];
 
         //业绩
