@@ -1103,7 +1103,7 @@ class SolitaireController extends CommonController {
 		$size = isset($_GPC['size']) ? $_GPC['size']:'20';
 		$offset = ($page - 1)* $size;
 
-		$list =  M()->query('select gc.* from '.C('DB_PREFIX')."lionfish_comshop_order as g ,".C('DB_PREFIX')."lionfish_comshop_solitaire as gc 
+		$list =  M()->query('select 1.* from '.C('DB_PREFIX')."lionfish_comshop_order as g ,".C('DB_PREFIX')."lionfish_comshop_solitaire as gc 
 					where  g.member_id={$member_id} and g.soli_id>0 and g.soli_id = gc.id order by g.order_id desc limit {$offset}, {$size} " );
 		
 		if( !empty( $list ) )

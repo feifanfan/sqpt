@@ -4776,6 +4776,7 @@ public function sub_order()
 			   <trade_type>'.$trade_type.'</trade_type>
 			   <sign>'.$sign.'</sign>
 			</xml> ';
+
 		$url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
 		$xml = http_request($url,$post_xml);
 		$array = xml($xml);
