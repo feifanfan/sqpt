@@ -536,7 +536,8 @@ class MenuModel{
 						'items' => array(
 							 array('title' => '提现列表', 'route' => 'communityhead/distribulist', 'desc' => ''),
 							array('title' => '提现设置', 'route' => 'communityhead/distributionpostal', 'desc' => ''),
-						   
+                            array('title' => '团长激励奖金列表', 'route' => 'communityhead/rewordheadlist', 'desc' => ''),
+                            array('title' => '激励计划', 'route' => 'communityhead/rewardList', 'desc' => ''),
 							)
 						),
 					
@@ -665,6 +666,16 @@ class MenuModel{
 								array('title' => '会员卡设置', 'route' => 'vipcard/config', 'desc' => ''),
 							)
 						),
+                    array(
+                        'title' => '投票',
+                        'route' => 'survey/surveyList',
+                        'items' => array(
+                            array('title' => '添加投票', 'route' => 'survey/addSurvey', 'desc' => ''),
+                            array('title' => '主题列表', 'route' => 'survey/surveyList', 'desc' => ''),
+//                            array('title' => '购买会员订单', 'route' => 'vipcard/order', 'desc' => ''),
+//                            array('title' => '会员卡设置', 'route' => 'vipcard/config', 'desc' => ''),
+                        )
+                    ),
 					)
 			),
 			'delivery'  => array(

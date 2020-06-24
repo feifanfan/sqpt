@@ -686,6 +686,7 @@ class WxPayApi
  	 */
 	public static function notify($callback, &$msg)
 	{
+
 		//获取通知的数据
 		
 		if( !isset($GLOBALS['HTTP_RAW_POST_DATA']) )

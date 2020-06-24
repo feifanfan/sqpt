@@ -12,6 +12,7 @@
  *
  */
 
+<<<<<<< HEAD
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 header("Content-Type:text/html; charset=utf-8");
@@ -33,6 +34,8 @@ $_GET['c'] = 'Payment';
 $_GET['a'] = 'weixin_notify';
 define('ROOT_PATH',str_replace('\\','/',dirname(__FILE__)) . '/');
 
+=======
+>>>>>>> 7ba104a02c945965035b0428bf00b4cd37ca0c41
 define ('RUNTIME_PATH','./Runtime/');
 
 require './ThinkPHP/ThinkPHP.php';
