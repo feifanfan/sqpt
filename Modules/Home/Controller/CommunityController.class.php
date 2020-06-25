@@ -2736,7 +2736,7 @@ class CommunityController extends CommonController {
 
         $where = " and member_id = {$member_id} ";
 
-        $sql = "select *   from ".C('DB_PREFIX')."oscshop_lionfish_community_head_reward  where  1  {$where}  order by id desc limit {$offset},{$size}";
+        $sql = "select *   from ".C('DB_PREFIX')."lionfish_community_head_reward  where  1  {$where}  order by id desc limit {$offset},{$size}";
         $list =  M()->query($sql);
 
         if( empty($list) )
