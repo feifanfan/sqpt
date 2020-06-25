@@ -2720,6 +2720,34 @@ class CommunityController extends CommonController {
 			die();
 	    }
 	}
+	public function jililist(){
+        $_GPC = I('request.');
+
+        $token = $_GPC['token'];
+
+        $weprogram_token = M('lionfish_comshop_weprogram_token')->field('member_id')->where( array('token' => $token) )->find();
+
+        $member_id = $weprogram_token['member_id'];
+
+        $page = isset($_GPC['page']) ? $_GPC['page']:'1';
+
+        $size = isset($_GPC['size']) ? $_GPC['size']:'20';
+        $offset = ($page - 1)* $size;
+
+        $where = " and member_id = {$member_id} ";
+
+        $sql = "select *   from ".C('DB_PREFIX')."oscshop_lionfish_community_head_reward  where  1  {$where}  order by id desc limit {$offset},{$size}";
+        $list =  M()->query($sql);
+
+        if( empty($list) )
+        {
+            echo json_encode(array('code' => 1));
+            die();
+        }else{
+            echo json_encode( array('code' =>0, 'data' => $list) );
+            die();
+        }
+    }
 	
     //----------end----------------------
 }
